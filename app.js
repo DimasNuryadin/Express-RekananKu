@@ -6,6 +6,8 @@ const logger = require('morgan');
 
 const dashboardRouter = require('./app/dashboard/router');
 const calonRekananRouter = require('./app/calon-rekanan/router');
+const pemilikRouter = require('./app/pemilik/router');
+// User
 
 const app = express();
 
@@ -22,6 +24,9 @@ app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lt
 
 app.use('/', dashboardRouter);
 app.use('/calon-rekanan', calonRekananRouter);
+app.use('/pemilik', pemilikRouter);
+// User
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

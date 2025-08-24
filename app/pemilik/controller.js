@@ -1,9 +1,14 @@
+const Pemilik = require('./model')
+
 module.exports = {
-  index: async (req, res) => {
+  actionCreate: async (req, res) => {
     try {
-      res.render('index')
+      const { nama, ktp, alamat, saham } = req.body;
+
+      let pemilik = await Pemilik({ nama, ktp, alamat, saham });
+      await pemilik.save();
     } catch (err) {
       console.log(err)
     }
-  },
+  }
 }
