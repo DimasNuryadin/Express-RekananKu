@@ -6,18 +6,18 @@ const pemilikSchema = mongoose.Schema({
     require: [true, "Nama harus diisi!"]
   },
   ktp: {
-    type: String,
+    type: Number,
     require: [true, "KTP harus diisi!"],
     maxLength: [16, "Panjang ktp harus 16 karakter"],
     minLength: [16, "Panjang ktp harus 16 karakter"]
   },
   alamat: {
     type: String,
-    require: [true, "KTP harus diisi!"]
+    require: [true, "Alamat harus diisi!"]
   },
   saham: {
-    type: String,
-    require: [true, "KTP harus diisi!"]
+    type: Number,
+    require: [true, "Saham harus diisi!"]
   }
 })
 
