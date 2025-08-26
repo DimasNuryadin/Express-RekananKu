@@ -5,10 +5,11 @@ const dataPerusahaanSchema = mongoose.Schema({
     type: String,
     require: [true, "Nama perusahaan harus diisi!"]
   },
-  tipePerusahaan: {
+  tipe: {
     type: String,
+    enum: ['PT', 'Yayasan', 'Koperasi', 'CV', 'Firma']
   },
-  NPWP: {
+  npwp: {
     type: String,
   },
   alamat: {

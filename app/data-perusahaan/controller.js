@@ -11,11 +11,23 @@ module.exports = {
   },
   actionCreate: async (req, res) => {
     try {
-      const { nama, ktp, alamat, jabatan, tanggalSelesai } = req.body;
+      const data = req.body;
+      const dataPerusahaan = {
+        namaPerusahaan: data.namaPerusahaan,
+        tipe: data.tipe,
+        npwp: data.npwp,
+        alamat: data.alamat,
+        kota: data.kota,
+        provinsi: data.provinsi,
+        kodePos: data.kodePos,
+        telepon: data.telepon,
+        website: data.website,
+        kantorCabang: data.kantorCabang,
+      }
 
-      let dataPerusahaan = await DataPerusahaan({ nama, ktp, alamat, jabatan, tanggalSelesai });
+      let dataDb = await DataPerusahaan(dataPerusahaan);
       await dataPerusahaan.save();
-      res.status(200).json({ message: "Data dataPerusahaan berhasil ditambah", data: dataPerusahaan })
+      res.status(200).json({ message: "Data dataPerusahaan berhasil ditambah", data: dataDb })
     } catch (err) {
       res.json({ message: err })
     }
