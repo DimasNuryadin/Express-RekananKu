@@ -1,10 +1,10 @@
-const Pengurus = require('./model')
+const DataPerusahaan = require('./model')
 
 module.exports = {
-  getPengurus: async (req, res) => {
+  getDataPerusahaan: async (req, res) => {
     try {
-      const pengurus = await Pengurus.find();
-      res.status(200).json({ message: "Data pengurus berhasil difetch", data: pengurus })
+      const dataPerusahaan = await DataPerusahaan.find();
+      res.status(200).json({ message: "Data data perusahaan berhasil difetch", data: dataPerusahaan })
     } catch (err) {
       res.json({ message: err })
     }
@@ -13,9 +13,9 @@ module.exports = {
     try {
       const { nama, ktp, alamat, jabatan, tanggalSelesai } = req.body;
 
-      let pengurus = await Pengurus({ nama, ktp, alamat, jabatan, tanggalSelesai });
-      await pengurus.save();
-      res.status(200).json({ message: "Data pengurus berhasil ditambah", data: pengurus })
+      let dataPerusahaan = await DataPerusahaan({ nama, ktp, alamat, jabatan, tanggalSelesai });
+      await dataPerusahaan.save();
+      res.status(200).json({ message: "Data dataPerusahaan berhasil ditambah", data: dataPerusahaan })
     } catch (err) {
       res.json({ message: err })
     }
@@ -23,8 +23,8 @@ module.exports = {
   actionDelete: async (req, res) => {
     try {
       const { id } = req.params;
-      await Pengurus.findByIdAndDelete({ _id: id })
-      res.status(200).json({ message: "Data pengurus berhasil dihapus" })
+      await DataPerusahaan.findByIdAndDelete({ _id: id })
+      res.status(200).json({ message: "Data dataPerusahaan berhasil dihapus" })
     } catch (err) {
       res.json({ message: err })
     }

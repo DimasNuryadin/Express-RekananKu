@@ -17,31 +17,31 @@ const tenagaAhliSchema = mongoose.Schema({
   },
   jabatan: {
     type: Number,
-    require: [true, "Saham harus diisi!"]
+    require: [true, "Jabatan harus diisi!"]
   },
   pendidikanTerakhir: {
     type: String,
-    require: [true, "Saham harus diisi!"]
+    require: [true, "Pendidikan terakhir harus diisi!"]
   },
   profesiKeahlian: {
     type: String,
-    require: [true, "Saham harus diisi!"]
+    require: [true, "Profesi keahlian harus diisi!"]
   },
   npwp: {
     type: String,
-    require: [true, "Saham harus diisi!"]
+    require: [true, "NPWP harus diisi!"]
   },
   kewarganegaraan: {
     type: String,
-    require: [true, "Saham harus diisi!"]
+    require: [true, "Kewarganegaraan harus diisi!"]
   },
   pengalamanKerja: {
     type: Number,
-    require: [true, "Saham harus diisi!"]
+    require: [true, "Pengalaman kerja harus diisi!"]
   },
   statusKepegawaian: {
     type: String,
-    require: [true, "Saham harus diisi!"]
+    require: [true, "Status kepegawaian harus diisi!"]
   }
 })
 

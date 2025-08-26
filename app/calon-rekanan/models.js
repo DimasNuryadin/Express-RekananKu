@@ -6,9 +6,9 @@ let statusRekananSchema = mongoose.Schema({
   },
   status: {
     type: String,
+    require: [true, "Review harus diisi!"],
     enum: ['Review', 'Rekanan', 'Bukan Rekanan'],
-    default: 'Review',
-    require: [true, "Review harus diisi!"]
+    default: 'Review'
   }
 })
 

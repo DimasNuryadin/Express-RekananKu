@@ -1,32 +1,41 @@
 const mongoose = require('mongoose');
 
-const pengurusSchema = mongoose.Schema({
+const dataPerusahaanSchema = mongoose.Schema({
   namaPerusahaan: {
     type: String,
     require: [true, "Nama perusahaan harus diisi!"]
   },
   tipePerusahaan: {
     type: String,
-    require: [true, "Tipe perusahaan harus diisi!"]
   },
-  ktp: {
-    type: Number,
-    require: [true, "KTP harus diisi!"],
-    maxLength: [16, "Panjang ktp harus 16 karakter"],
-    minLength: [16, "Panjang ktp harus 16 karakter"]
+  NPWP: {
+    type: String,
   },
   alamat: {
     type: String,
-    require: [true, "Alamat harus diisi!"]
   },
-  jabatan: {
+  kota: {
     type: String,
-    require: [true, "Jabatan harus diisi!"]
+    require: [true, "Kota harus diisi!"]
   },
-  tanggalSelesai: {
-    type: Date,
-    require: [true, "Tanggal selesai harus diisi!"]
+  provinsi: {
+    type: String,
+    require: [true, "Provinsi harus diisi!"]
+  },
+  kodePos: {
+    type: String,
+  },
+  telepon: {
+    type: String,
+    require: [true, "Telepon harus diisi!"],
+    minLength: [8, "Panjang telepon min 8 karakter"]
+  },
+  website: {
+    type: String
+  },
+  kantorCabang: {
+    type: Boolean
   }
 })
 
-module.exports = mongoose.model('Pengurus', pengurusSchema);
+module.exports = mongoose.model('DataPerusahaan', dataPerusahaanSchema);
