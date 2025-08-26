@@ -14,14 +14,16 @@ module.exports = {
       const data = req.body;
       const dataTenagaAhli = {
         nama: data.nama,
-        ktp: data.ktp,
         alamat: data.alamat,
-        jabatan: data.jabatan,
         pendidikanTerakhir: data.pendidikanTerakhir,
+        email: data.email,
         profesiKeahlian: data.profesiKeahlian,
+        ktp: data.ktp,
         npwp: data.npwp,
+        jenisKelamin: data.jenisKelamin,
         kewarganegaraan: data.kewarganegaraan,
         pengalamanKerja: data.pengalamanKerja,
+        jabatan: data.jabatan,
         statusKepegawaian: data.statusKepegawaian,
       }
 

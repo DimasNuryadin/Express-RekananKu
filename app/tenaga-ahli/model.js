@@ -5,39 +5,46 @@ const tenagaAhliSchema = mongoose.Schema({
     type: String,
     require: [true, "Nama harus diisi!"]
   },
+  alamat: {
+    type: String,
+    require: [true, "Alamat harus diisi!"]
+  },
+  pendidikanTerakhir: {
+    type: String,
+    require: [true, "Pendidikan terakhir harus diisi!"]
+  },
+  email: {
+    type: String
+  },
+  profesiKeahlian: {
+    type: String,
+    require: [true, "Profesi keahlian harus diisi!"]
+  },
   ktp: {
     type: Number,
     require: [true, "KTP harus diisi!"],
     maxLength: [16, "Panjang ktp harus 16 karakter"],
     minLength: [16, "Panjang ktp harus 16 karakter"]
   },
-  alamat: {
-    type: String,
-    require: [true, "Alamat harus diisi!"]
-  },
-  jabatan: {
-    type: Number,
-    require: [true, "Jabatan harus diisi!"]
-  },
-  pendidikanTerakhir: {
-    type: String,
-    require: [true, "Pendidikan terakhir harus diisi!"]
-  },
-  profesiKeahlian: {
-    type: String,
-    require: [true, "Profesi keahlian harus diisi!"]
-  },
   npwp: {
     type: String,
     require: [true, "NPWP harus diisi!"]
   },
+  jenisKelamin: {
+    type: String,
+    enum: ["Pria", "Wanita"],
+    require: [true, "Kelamin harus diisi!"]
+  },
   kewarganegaraan: {
     type: String,
-    require: [true, "Kewarganegaraan harus diisi!"]
   },
   pengalamanKerja: {
     type: Number,
     require: [true, "Pengalaman kerja harus diisi!"]
+  },
+  jabatan: {
+    type: Number,
+    require: [true, "Jabatan harus diisi!"]
   },
   statusKepegawaian: {
     type: String,
