@@ -1,7 +1,7 @@
 const Pengurus = require('./model')
 
 module.exports = {
-  getPengurus: async (req, res) => {
+  getAllPengurus: async (req, res) => {
     try {
       const pengurus = await Pengurus.find();
       res.status(200).json({ message: "Data pengurus berhasil difetch", data: pengurus })
@@ -11,9 +11,9 @@ module.exports = {
   },
   actionCreate: async (req, res) => {
     try {
-      const { nama, ktp, alamat, jabatan, tanggalMulai, tanggalSelesai } = req.body;
+      const { userId, nama, ktp, alamat, jabatan, tanggalMulai, tanggalSelesai } = req.body;
 
-      let pengurus = await Pengurus({ nama, ktp, alamat, jabatan, tanggalMulai, tanggalSelesai });
+      let pengurus = await Pengurus({ userId, nama, ktp, alamat, jabatan, tanggalMulai, tanggalSelesai });
       await pengurus.save();
       res.status(200).json({ message: "Data pengurus berhasil ditambah", data: pengurus })
     } catch (err) {

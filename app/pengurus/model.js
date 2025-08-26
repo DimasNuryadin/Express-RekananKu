@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const pengurusSchema = mongoose.Schema({
+  userId: {
+    type: Number,
+    require: [true, "Nama harus diisi!"]
+  },
   nama: {
     type: String,
     require: [true, "Nama harus diisi!"]
