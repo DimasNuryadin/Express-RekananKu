@@ -1,9 +1,11 @@
 const StatusRekanan = require('./models')
+// const DataPerusahaan = reuqire('../data-perusahaan/model');
 
 module.exports = {
   index: async (req, res) => {
     try {
-      res.render('admin/calon-rekanan/view_calon-rekanan')
+      const statusRekanan = await StatusRekanan.find();
+      res.render('admin/calon-rekanan/view_calon-rekanan', { statusRekanan })
     } catch (err) {
       console.log(err)
     }
@@ -20,7 +22,7 @@ module.exports = {
       const { userId, status } = req.body;
       const statusRekanan = await StatusRekanan({ userId, status })
       await statusRekanan.save();
-      res.status(200).json({ message: "Status rekanan berhasil dibuat", data: izinUsaha })
+      res.status(200).json({ message: "Status rekanan berhasil dibuat", data: statusRekanan })
     } catch (err) {
       console.log(err)
     }

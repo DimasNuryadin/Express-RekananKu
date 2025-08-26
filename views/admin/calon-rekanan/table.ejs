@@ -4,17 +4,32 @@
       <th>No</th>
       <th>Nama Perusahaan</th>
       <th>Bidang Usaha</th>
+      <th>Status</th>
       <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td>PT</td>
-      <td>Teknik</td>
-      <td>
-        <a href="/calon-rekanan/view-user">Lihat</a>
-      </td>
-    </tr>
+    <% for(let i=0; i < statusRekanan.length; i++) { %>
+      <tr>
+        <td>
+          <%= i + 1 %>
+        </td>
+        <td>
+          Bidang Usaha
+        </td>
+        <td>
+          Nama Perusahaan
+        </td>
+        <td>
+          <%= statusRekanan[i].status %>
+        </td>
+        <td>
+          <form action="">
+            <a class="btn btn-light" href="/calon-rekanan/view-user">Lihat</a>
+            <button class="btn btn-success">Terima</button>
+          </form>
+        </td>
+      </tr>
+      <% } %>
   </tbody>
 </table>
