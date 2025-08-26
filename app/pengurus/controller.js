@@ -10,9 +10,9 @@ module.exports = {
     }
   },
   getPengurus: async (req, res) => {
-    const { id } = req.params;
+    const { userId } = req.params;
     try {
-      const pengurus = await Pengurus.find({ userId: id });
+      const pengurus = await Pengurus.find({ userId });
       res.status(200).json({ message: "Data pengurus berhasil difetch", data: pengurus })
     } catch (err) {
       res.json({ message: err })

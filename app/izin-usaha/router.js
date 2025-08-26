@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { getIzinUsaha, actionCreate, actionDelete } = require('./controller');
+const { getIzinUsaha, actionCreate, actionDelete, getAllIzinUsaha } = require('./controller');
 
-/* GET home page. */
-router.get('/', getIzinUsaha);
+router.get('/', getAllIzinUsaha);
+router.get('/:userId', getIzinUsaha);
 router.post('/', actionCreate);
 router.delete('/:id', actionDelete);
 

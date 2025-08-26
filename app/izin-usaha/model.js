@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 
 const izinUsahaSchema = mongoose.Schema({
+  userId: {
+    type: Number,
+    require: [true, "userId harus diisi!"]
+  },
   jenisIzin: {
     type: String,
-    require: [true, "Nama harus diisi!"]
+    require: [true, "Jenis izin harus diisi!"]
   },
   noSurat: {
     type: String,
@@ -11,11 +15,11 @@ const izinUsahaSchema = mongoose.Schema({
   },
   berlakuSampai: {
     type: String,
-    require: [true, "Alamat harus diisi!"]
+    require: [true, "Berlaku harus diisi!"]
   },
   instansiPemberi: {
     type: String,
-    require: [true, "Saham harus diisi!"]
+    require: [true, "Instansi pemberi harus diisi!"]
   }
 })
 

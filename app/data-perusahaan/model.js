@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const dataPerusahaanSchema = mongoose.Schema({
+  userId: {
+    type: Number,
+    require: [true, "userId harus diisi!"]
+  },
   namaPerusahaan: {
     type: String,
     require: [true, "Nama perusahaan harus diisi!"]

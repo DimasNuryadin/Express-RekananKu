@@ -1,9 +1,18 @@
 const DataPerusahaan = require('./model')
 
 module.exports = {
-  getDataPerusahaan: async (req, res) => {
+  getAllDataPerusahaan: async (req, res) => {
     try {
       const dataPerusahaan = await DataPerusahaan.find();
+      res.status(200).json({ message: "Data data perusahaan berhasil difetch", data: dataPerusahaan })
+    } catch (err) {
+      res.json({ message: err })
+    }
+  },
+  getDataPerusahaan: async (req, res) => {
+    const { userId } = req.params;
+    try {
+      const dataPerusahaan = await DataPerusahaan.find({ userId });
       res.status(200).json({ message: "Data data perusahaan berhasil difetch", data: dataPerusahaan })
     } catch (err) {
       res.json({ message: err })
@@ -13,6 +22,7 @@ module.exports = {
     try {
       const data = req.body;
       const dataPerusahaan = {
+        userId: data.userId,
         namaPerusahaan: data.namaPerusahaan,
         tipe: data.tipe,
         npwp: data.npwp,
@@ -24,6 +34,7 @@ module.exports = {
         website: data.website,
         kantorCabang: data.kantorCabang,
       }
+      console.log("data : ", dataPerusahaan)
       let dataDb = await DataPerusahaan(dataPerusahaan);
       await dataDb.save();
       res.status(200).json({ message: "Data dataPerusahaan berhasil ditambah", data: dataDb })

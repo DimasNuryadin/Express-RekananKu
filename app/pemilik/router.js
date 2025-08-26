@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { getPemilik, actionCreate, actionDelete } = require('./controller');
+const { getPemilik, actionCreate, actionDelete, getAllPemilik } = require('./controller');
 
-/* GET home page. */
-router.get('/', getPemilik);
+router.get('/', getAllPemilik);
+router.get('/:userId', getPemilik);
 router.post('/', actionCreate);
 router.delete('/:id', actionDelete);
 

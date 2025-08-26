@@ -1,9 +1,18 @@
 const TenagaAhli = require('./model')
 
 module.exports = {
-  getTenagaAhli: async (req, res) => {
+  getAllTenagaAhli: async (req, res) => {
     try {
       const tenagaAhli = await TenagaAhli.find();
+      res.status(200).json({ message: "Data tenaga ahli berhasil difetch", data: tenagaAhli })
+    } catch (err) {
+      res.json({ message: err })
+    }
+  },
+  getTenagaAhli: async (req, res) => {
+    const { userId } = req.params;
+    try {
+      const tenagaAhli = await TenagaAhli.find({ userId });
       res.status(200).json({ message: "Data tenaga ahli berhasil difetch", data: tenagaAhli })
     } catch (err) {
       res.json({ message: err })
@@ -13,6 +22,7 @@ module.exports = {
     try {
       const data = req.body;
       const dataTenagaAhli = {
+        userId: data.userId,
         nama: data.nama,
         alamat: data.alamat,
         pendidikanTerakhir: data.pendidikanTerakhir,

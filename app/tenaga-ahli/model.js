@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const tenagaAhliSchema = mongoose.Schema({
+  userId: {
+    type: Number,
+    require: [true, "userId harus diisi!"]
+  },
   nama: {
     type: String,
     require: [true, "Nama harus diisi!"]
@@ -21,10 +25,11 @@ const tenagaAhliSchema = mongoose.Schema({
     require: [true, "Profesi keahlian harus diisi!"]
   },
   ktp: {
-    type: Number,
-    require: [true, "KTP harus diisi!"],
-    maxLength: [16, "Panjang ktp harus 16 karakter"],
-    minLength: [16, "Panjang ktp harus 16 karakter"]
+    type: String,
+    required: [true, "KTP harus diisi!"],
+    unique: true,
+    minLength: [16, "Panjang ktp harus 16 karakter"],
+    maxLength: [16, "Panjang ktp harus 16 karakter"]
   },
   npwp: {
     type: String,
@@ -33,7 +38,7 @@ const tenagaAhliSchema = mongoose.Schema({
   jenisKelamin: {
     type: String,
     enum: ["Pria", "Wanita"],
-    require: [true, "Kelamin harus diisi!"]
+    require: [true, "Jenis kelamin harus diisi!"]
   },
   kewarganegaraan: {
     type: String,
@@ -43,11 +48,12 @@ const tenagaAhliSchema = mongoose.Schema({
     require: [true, "Pengalaman kerja harus diisi!"]
   },
   jabatan: {
-    type: Number,
+    type: String,
     require: [true, "Jabatan harus diisi!"]
   },
   statusKepegawaian: {
     type: String,
+    enum: ["Tetap", "Tidak Tetap"],
     require: [true, "Status kepegawaian harus diisi!"]
   }
 })

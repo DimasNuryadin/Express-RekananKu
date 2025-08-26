@@ -1,15 +1,20 @@
 const mongoose = require('mongoose');
 
 const pemilikSchema = mongoose.Schema({
+  userId: {
+    type: Number,
+    require: [true, "userId harus diisi!"]
+  },
   nama: {
     type: String,
     require: [true, "Nama harus diisi!"]
   },
   ktp: {
-    type: Number,
-    require: [true, "KTP harus diisi!"],
-    maxLength: [16, "Panjang ktp harus 16 karakter"],
-    minLength: [16, "Panjang ktp harus 16 karakter"]
+    type: String,
+    required: [true, "KTP harus diisi!"],
+    unique: true,
+    minLength: [16, "Panjang ktp harus 16 karakter"],
+    maxLength: [16, "Panjang ktp harus 16 karakter"]
   },
   alamat: {
     type: String,
