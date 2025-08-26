@@ -6,8 +6,13 @@ const logger = require('morgan');
 
 const dashboardRouter = require('./app/dashboard/router');
 const calonRekananRouter = require('./app/calon-rekanan/router');
+
+// API
+const dataPerusahaanRouter = require('./app/data-perusahaan/router');
+const izinUsahaRouter = require('./app/izin-usaha/router');
 const pemilikRouter = require('./app/pemilik/router');
-// User
+const pengurusRouter = require('./app/pengurus/router');
+const tenagaAhliRouter = require('./app/tenaga-ahli/router');
 
 const app = express();
 
@@ -24,7 +29,11 @@ app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lt
 
 app.use('/', dashboardRouter);
 app.use('/calon-rekanan', calonRekananRouter);
+app.use('/data-perusahaan', dataPerusahaanRouter);
+app.use('/izin-usaha', izinUsahaRouter);
 app.use('/pemilik', pemilikRouter);
+app.use('/pengurus', pengurusRouter);
+app.use('/tenaga-ahli', tenagaAhliRouter);
 // User
 
 
