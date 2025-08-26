@@ -15,18 +15,31 @@ module.exports = {
       console.log(err)
     }
   },
-  accept: async (req, res) => {
+  actionCreate: async (req, res) => {
     try {
-      res.render('admin/')
+      const { userId, status } = req.body;
+      const statusRekanan = await StatusRekanan({ userId, status })
+      await statusRekanan.save();
+      res.status(200).json({ message: "Status rekanan berhasil dibuat", data: izinUsaha })
     } catch (err) {
       console.log(err)
     }
   },
-  actionEdit: async (req, res) => {
+  actionAccept: async (req, res) => {
     try {
       const { id } = req.params;
       const { status } = req.body;
-      const statusRekanan = await StatusRekanan.findOneAndUpdate({ _id: id }, { status })
+      await StatusRekanan.findOneAndUpdate({ _id: id }, { status })
+      res.redirect("/calon-rekanan")
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  actionReject: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+      await StatusRekanan.findOneAndUpdate({ _id: id }, { status })
       res.redirect("/calon-rekanan")
     } catch (err) {
       console.log(err)
