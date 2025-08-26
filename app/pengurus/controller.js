@@ -11,9 +11,9 @@ module.exports = {
   },
   actionCreate: async (req, res) => {
     try {
-      const { nama, ktp, alamat, jabatan, tanggalSelesai } = req.body;
+      const { nama, ktp, alamat, jabatan, tanggalMulai, tanggalSelesai } = req.body;
 
-      let pengurus = await Pengurus({ nama, ktp, alamat, jabatan, tanggalSelesai });
+      let pengurus = await Pengurus({ nama, ktp, alamat, jabatan, tanggalMulai, tanggalSelesai });
       await pengurus.save();
       res.status(200).json({ message: "Data pengurus berhasil ditambah", data: pengurus })
     } catch (err) {

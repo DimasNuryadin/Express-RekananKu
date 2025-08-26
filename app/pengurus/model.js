@@ -19,6 +19,10 @@ const pengurusSchema = mongoose.Schema({
     type: String,
     require: [true, "Jabatan harus diisi!"]
   },
+  tanggalMulai: {
+    type: Date,
+    require: [true, "Tanggal mulai selesai harus diisi!"]
+  },
   tanggalSelesai: {
     type: Date,
     require: [true, "Tanggal selesai harus diisi!"]
