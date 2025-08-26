@@ -6,17 +6,15 @@ const izinUsahaSchema = mongoose.Schema({
     require: [true, "Nama harus diisi!"]
   },
   noSurat: {
-    type: Number,
-    require: [true, "KTP harus diisi!"],
-    maxLength: [16, "Panjang ktp harus 16 karakter"],
-    minLength: [16, "Panjang ktp harus 16 karakter"]
+    type: String,
+    require: [true, "No surat harus diisi!"]
   },
   berlakuSampai: {
     type: String,
     require: [true, "Alamat harus diisi!"]
   },
   instansiPemberi: {
-    type: Number,
+    type: String,
     require: [true, "Saham harus diisi!"]
   }
 })

@@ -24,9 +24,8 @@ module.exports = {
         website: data.website,
         kantorCabang: data.kantorCabang,
       }
-
       let dataDb = await DataPerusahaan(dataPerusahaan);
-      await dataPerusahaan.save();
+      await dataDb.save();
       res.status(200).json({ message: "Data dataPerusahaan berhasil ditambah", data: dataDb })
     } catch (err) {
       res.json({ message: err })
@@ -36,7 +35,7 @@ module.exports = {
     try {
       const { id } = req.params;
       await DataPerusahaan.findByIdAndDelete({ _id: id })
-      res.status(200).json({ message: "Data dataPerusahaan berhasil dihapus" })
+      res.status(200).json({ message: "Data data perusahaan berhasil dihapus" })
     } catch (err) {
       res.json({ message: err })
     }
