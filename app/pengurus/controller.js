@@ -9,6 +9,15 @@ module.exports = {
       res.json({ message: err })
     }
   },
+  getPengurus: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const pengurus = await Pengurus.find({ userId: id });
+      res.status(200).json({ message: "Data pengurus berhasil difetch", data: pengurus })
+    } catch (err) {
+      res.json({ message: err })
+    }
+  },
   actionCreate: async (req, res) => {
     try {
       const { userId, nama, ktp, alamat, jabatan, tanggalMulai, tanggalSelesai } = req.body;
