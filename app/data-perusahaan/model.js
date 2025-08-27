@@ -21,6 +21,15 @@ const dataPerusahaanSchema = mongoose.Schema({
   npwp: {
     type: String,
   },
+  telepon: {
+    type: String,
+    require: [true, "Telepon harus diisi!"],
+    minLength: [8, "Panjang telepon min 8 karakter"]
+  },
+  website: {
+    type: String
+  },
+
   alamat: {
     type: String,
   },
@@ -34,14 +43,6 @@ const dataPerusahaanSchema = mongoose.Schema({
   },
   kodePos: {
     type: String,
-  },
-  telepon: {
-    type: String,
-    require: [true, "Telepon harus diisi!"],
-    minLength: [8, "Panjang telepon min 8 karakter"]
-  },
-  website: {
-    type: String
   },
   kantorCabang: {
     type: Boolean
