@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 let statusRekananSchema = mongoose.Schema({
-  id: {
-    type: String,
-    require: [true, 'id harus diisi']
+  userId: {
+    type: Number,
+    require: [true, 'userId harus diisi']
   },
   status: {
     type: String,
-    require: [true, "Review harus diisi!"],
+    require: [true, "Status rekanan harus diisi!"],
     enum: ['Review', 'Rekanan', 'Bukan Rekanan'],
     default: 'Review'
   }
