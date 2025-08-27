@@ -56,6 +56,6 @@ const tenagaAhliSchema = mongoose.Schema({
     enum: ["Tetap", "Tidak Tetap"],
     require: [true, "Status kepegawaian harus diisi!"]
   }
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('TenagaAhli', tenagaAhliSchema);

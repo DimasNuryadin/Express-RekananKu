@@ -24,6 +24,7 @@ module.exports = {
       const dataPerusahaan = {
         userId: data.userId,
         namaPerusahaan: data.namaPerusahaan,
+        bidangUsaha: data.bidangUsaha,
         tipe: data.tipe,
         npwp: data.npwp,
         alamat: data.alamat,
@@ -34,7 +35,6 @@ module.exports = {
         website: data.website,
         kantorCabang: data.kantorCabang,
       }
-      console.log("data : ", dataPerusahaan)
       let dataDb = await DataPerusahaan(dataPerusahaan);
       await dataDb.save();
       res.status(200).json({ message: "Data dataPerusahaan berhasil ditambah", data: dataDb })

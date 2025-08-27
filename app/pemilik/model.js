@@ -24,6 +24,6 @@ const pemilikSchema = mongoose.Schema({
     type: Number,
     require: [true, "Saham harus diisi!"]
   }
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('Pemilik', pemilikSchema);

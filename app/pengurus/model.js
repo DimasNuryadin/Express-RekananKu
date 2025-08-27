@@ -32,6 +32,6 @@ const pengurusSchema = mongoose.Schema({
     type: Date,
     require: [true, "Tanggal selesai harus diisi!"]
   }
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('Pengurus', pengurusSchema);

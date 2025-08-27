@@ -1,0 +1,32 @@
+<table id="example3" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Nama</th>
+      <th>KTP</th>
+      <th>Alamat</th>
+      <th>Saham</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(let i=0; i < pemilik.length; i++){ %>
+      <tr>
+        <td>
+          <%= i+1 %>
+        </td>
+        <td>
+          <%= pemilik[i].nama %>
+        </td>
+        <td>
+          <%= pemilik[i].ktp %>
+        </td>
+        <td>
+          <%= pemilik[i].alamat %>
+        </td>
+        <td>
+          <%= pemilik[i].saham %>%
+        </td>
+      </tr>
+      <% } %>
+  </tbody>
+</table>

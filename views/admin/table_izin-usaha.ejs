@@ -1,0 +1,32 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Jenis Izin</th>
+      <th>No Surat</th>
+      <th>Berlaku Sampai</th>
+      <th>Instansi Pemberi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(let i=0; i < izinUsaha.length; i++){ %>
+      <tr>
+        <td>
+          <%= i+1 %>
+        </td>
+        <td>
+          <%= izinUsaha[i].jenisIzin %>
+        </td>
+        <td>
+          <%= izinUsaha[i].noSurat %>
+        </td>
+        <td>
+          <%= izinUsaha[i].berlakuSampai %>
+        </td>
+        <td>
+          <%= izinUsaha[i].instansiPemberi %>
+        </td>
+      </tr>
+      <% } %>
+  </tbody>
+</table>

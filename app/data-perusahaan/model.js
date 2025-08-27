@@ -3,11 +3,16 @@ const mongoose = require('mongoose');
 const dataPerusahaanSchema = mongoose.Schema({
   userId: {
     type: Number,
-    require: [true, "userId harus diisi!"]
+    require: [true, "userId harus diisi!"],
+    unique: true
   },
   namaPerusahaan: {
     type: String,
     require: [true, "Nama perusahaan harus diisi!"]
+  },
+  bidangUsaha: {
+    type: String,
+    require: [true, "Bidang usaha perusahaan harus diisi!"]
   },
   tipe: {
     type: String,
@@ -41,6 +46,6 @@ const dataPerusahaanSchema = mongoose.Schema({
   kantorCabang: {
     type: Boolean
   }
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('DataPerusahaan', dataPerusahaanSchema);

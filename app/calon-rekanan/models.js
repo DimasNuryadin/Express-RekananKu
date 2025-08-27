@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 let statusRekananSchema = mongoose.Schema({
   userId: {
     type: Number,
-    require: [true, 'userId harus diisi']
+    require: [true, 'userId harus diisi'],
+    unique: true
   },
   status: {
     type: String,
@@ -10,6 +11,6 @@ let statusRekananSchema = mongoose.Schema({
     enum: ['Review', 'Rekanan', 'Bukan Rekanan'],
     default: 'Review'
   }
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('StatusRekanan', statusRekananSchema);

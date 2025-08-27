@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { actionCreate, actionDelete, getDataPerusahaan, getAllDataPerusahaan, } = require('./controller');
 
+const { isLoginAdmin } = require('../middleware/auth');
+
+router.use(isLoginAdmin);
+
 router.get('/', getAllDataPerusahaan);
 router.get('/:userId', getDataPerusahaan);
 router.post('/', actionCreate);

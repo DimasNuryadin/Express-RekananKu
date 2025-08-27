@@ -21,6 +21,6 @@ const izinUsahaSchema = mongoose.Schema({
     type: String,
     require: [true, "Instansi pemberi harus diisi!"]
   }
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('IzinUsaha', izinUsahaSchema);

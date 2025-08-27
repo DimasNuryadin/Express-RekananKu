@@ -1,0 +1,40 @@
+<table id="example4" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Nama</th>
+      <th>KTP</th>
+      <th>Alamat</th>
+      <th>Jabatan</th>
+      <th>Tanggal Mulai</th>
+      <th>Tanggal Selesai</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(let i=0; i < pengurus.length; i++){ %>
+      <tr>
+        <td>
+          <%= i+1 %>
+        </td>
+        <td>
+          <%= pengurus[i].nama %>
+        </td>
+        <td>
+          <%= pengurus[i].ktp %>
+        </td>
+        <td>
+          <%= pengurus[i].alamat %>
+        </td>
+        <td>
+          <%= pengurus[i].jabatan %>
+        </td>
+        <td>
+          <%= pengurus[i].tanggalMulai %>
+        </td>
+        <td>
+          <%= pengurus[i].tanggalSelesai %>
+        </td>
+      </tr>
+      <% } %>
+  </tbody>
+</table>

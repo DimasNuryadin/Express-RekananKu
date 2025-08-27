@@ -7,7 +7,7 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Data Calon Rekanan</h1>
+                <h1>Data Rekanan</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -38,25 +38,49 @@
                       <div class="card-body">
                         <dl class="row">
                           <dt class="col-sm-2">Nama Perusahaan</dt>
-                          <dd class="col-sm-10">PT Coba</dd>
+                          <dd class="col-sm-10">
+                            <%= dataPerusahaan.namaPerusahaan %>
+                          </dd>
+                          <dt class="col-sm-2">Bidang Usaha</dt>
+                          <dd class="col-sm-10">
+                            <%= dataPerusahaan.bidangUsaha %>
+                          </dd>
                           <dt class="col-sm-2">Tipe</dt>
-                          <dd class="col-sm-10">Yayasan</dd>
+                          <dd class="col-sm-10">
+                            <%= dataPerusahaan.tipe %>
+                          </dd>
                           <dt class="col-sm-2">NPWP</dt>
-                          <dd class="col-sm-10">99.999.999.999</dd>
+                          <dd class="col-sm-10">
+                            <%= dataPerusahaan.npwp %>
+                          </dd>
                           <dt class="col-sm-2">Alamat</dt>
-                          <dd class="col-sm-10">Jl. Sudirman</dd>
+                          <dd class="col-sm-10">
+                            <%= dataPerusahaan.alamat %>
+                          </dd>
                           <dt class="col-sm-2">Kota</dt>
-                          <dd class="col-sm-10">Bandung</dd>
+                          <dd class="col-sm-10">
+                            <%= dataPerusahaan.kota %>
+                          </dd>
                           <dt class="col-sm-2">Provinsi</dt>
-                          <dd class="col-sm-10">Jawa Barat</dd>
+                          <dd class="col-sm-10">
+                            <%= dataPerusahaan.provinsi %>
+                          </dd>
                           <dt class="col-sm-2">Kode Pos</dt>
-                          <dd class="col-sm-10">40183</dd>
+                          <dd class="col-sm-10">
+                            <%= dataPerusahaan.kodePos %>
+                          </dd>
                           <dt class="col-sm-2">Telepon/Handphone</dt>
-                          <dd class="col-sm-10">08987328473</dd>
+                          <dd class="col-sm-10">
+                            <%= dataPerusahaan.telepon %>
+                          </dd>
                           <dt class="col-sm-2">Website</dt>
-                          <dd class="col-sm-10">www.coba.com</dd>
+                          <dd class="col-sm-10">
+                            <%= dataPerusahaan.website %>
+                          </dd>
                           <dt class="col-sm-2">Kantor Cabang</dt>
-                          <dd class="col-sm-10">True</dd>
+                          <dd class="col-sm-10">
+                            <%= dataPerusahaan?.kantorCabang ? 'Ya' : 'Tidak' %>
+                          </dd>
                         </dl>
                       </div>
                       <!-- /.card-body -->
@@ -100,7 +124,7 @@
                               </div>
                               <!-- /.card-header -->
                               <div class="card-body">
-                                <%- include ./table_izin-usaha.ejs %>
+                                <%- include ../table_izin-usaha.ejs %>
                               </div>
                               <!-- /.card-body -->
                             </div>
@@ -116,7 +140,7 @@
                               </div>
                               <!-- /.card-header -->
                               <div class="card-body">
-                                <%- include ./table_pemilik.ejs %>
+                                <%- include ../table_pemilik.ejs %>
                               </div>
                               <!-- /.card-body -->
                             </div>
@@ -132,7 +156,7 @@
                               </div>
                               <!-- /.card-header -->
                               <div class="card-body">
-                                <%- include ./table_pengurus.ejs %>
+                                <%- include ../table_pengurus.ejs %>
                               </div>
                               <!-- /.card-body -->
                             </div>
@@ -148,7 +172,7 @@
                               </div>
                               <!-- /.card-header -->
                               <div class="card-body table-responsive">
-                                <%- include ./table_tenaga-ahli.ejs %>
+                                <%- include ../table_tenaga-ahli.ejs %>
                               </div>
                               <!-- /.card-body -->
                             </div>
