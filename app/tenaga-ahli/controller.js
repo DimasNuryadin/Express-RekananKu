@@ -12,7 +12,7 @@ module.exports = {
   getTenagaAhli: async (req, res) => {
     const { userId } = req.params;
     try {
-      const tenagaAhli = await TenagaAhli.find({ userId });
+      const tenagaAhli = await TenagaAhli.find({ user: userId });
       res.status(200).json({ message: "Data tenaga ahli berhasil difetch", data: tenagaAhli })
     } catch (err) {
       res.json({ message: err })
@@ -22,7 +22,7 @@ module.exports = {
     try {
       const data = req.body;
       const dataTenagaAhli = {
-        userId: data.userId,
+        user: data.user,
         nama: data.nama,
         alamat: data.alamat,
         pendidikanTerakhir: data.pendidikanTerakhir,

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const izinUsahaSchema = mongoose.Schema({
-  userId: {
-    type: Number,
-    require: [true, "userId harus diisi!"]
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Player'
   },
   jenisIzin: {
     type: String,

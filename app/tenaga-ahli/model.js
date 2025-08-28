@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const tenagaAhliSchema = mongoose.Schema({
-  userId: {
-    type: Number,
-    require: [true, "userId harus diisi!"]
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Player'
   },
   nama: {
     type: String,

@@ -12,7 +12,7 @@ module.exports = {
   getPemilik: async (req, res) => {
     const { userId } = req.params;
     try {
-      const pemilik = await Pemilik.find({ userId });
+      const pemilik = await Pemilik.find({ user: userId });
       res.status(200).json({ message: "Data pemilik berhasil difetch", data: pemilik })
     } catch (err) {
       res.json({ message: err })
@@ -20,9 +20,9 @@ module.exports = {
   },
   actionCreate: async (req, res) => {
     try {
-      const { userId, nama, ktp, alamat, saham } = req.body;
+      const { user, nama, ktp, alamat, saham } = req.body;
 
-      let pemilik = await Pemilik({ userId, nama, ktp, alamat, saham });
+      let pemilik = await Pemilik({ user, nama, ktp, alamat, saham });
       await pemilik.save();
       res.status(200).json({ message: "Data pemilik berhasil ditambah", data: pemilik })
     } catch (err) {

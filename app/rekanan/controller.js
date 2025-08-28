@@ -8,8 +8,9 @@ const TenagaAhli = require('../tenaga-ahli/model');
 module.exports = {
   index: async (req, res) => {
     try {
-      const statusRekanan = await StatusRekanan.find({ status: 'Rekanan' });
-      // const dataPerusahaan = await DataPerusahaan.find();
+      const statusRekanan = await StatusRekanan.find({ status: 'Rekanan' })
+        .populate('dataPerusahaan', 'namaPerusahaan bidangUsaha');
+
       res.render('admin/rekanan/view_rekanan', {
         statusRekanan,
         email: req.session.user.email,
@@ -24,12 +25,11 @@ module.exports = {
   viewUser: async (req, res) => {
     try {
       const { userId } = req.params;
-      const dataPerusahaan = await DataPerusahaan.findOne({ userId: userId })
-      const izinUsaha = await IzinUsaha.find({ userId: userId })
-      const pemilik = await Pemilik.find({ userId: userId })
-      const pengurus = await Pengurus.find({ userId: userId })
-      const tenagaAhli = await TenagaAhli.find({ userId: userId })
-      // console.log("data :", izinUsaha)
+      const dataPerusahaan = await DataPerusahaan.findOne({ user: userId })
+      const izinUsaha = await IzinUsaha.find({ user: userId })
+      const pemilik = await Pemilik.find({ user: userId })
+      const pengurus = await Pengurus.find({ user: userId })
+      const tenagaAhli = await TenagaAhli.find({ user: userId })
       res.render('admin/rekanan/view_user', {
         dataPerusahaan, izinUsaha, pemilik, pengurus, tenagaAhli, email: req.session.user.email,
         title: 'Halaman Data Rekanan',

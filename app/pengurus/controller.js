@@ -12,7 +12,7 @@ module.exports = {
   getPengurus: async (req, res) => {
     const { userId } = req.params;
     try {
-      const pengurus = await Pengurus.find({ userId });
+      const pengurus = await Pengurus.find({ user: userId });
       res.status(200).json({ message: "Data pengurus berhasil difetch", data: pengurus })
     } catch (err) {
       res.json({ message: err })
@@ -20,9 +20,9 @@ module.exports = {
   },
   actionCreate: async (req, res) => {
     try {
-      const { userId, nama, ktp, alamat, jabatan, tanggalMulai, tanggalSelesai } = req.body;
+      const { user, nama, ktp, alamat, jabatan, tanggalMulai, tanggalSelesai } = req.body;
 
-      let pengurus = await Pengurus({ userId, nama, ktp, alamat, jabatan, tanggalMulai, tanggalSelesai });
+      let pengurus = await Pengurus({ user, nama, ktp, alamat, jabatan, tanggalMulai, tanggalSelesai });
       await pengurus.save();
       res.status(200).json({ message: "Data pengurus berhasil ditambah", data: pengurus })
     } catch (err) {

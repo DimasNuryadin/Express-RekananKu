@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 let statusRekananSchema = mongoose.Schema({
-  userId: {
-    type: Number,
-    require: [true, 'userId harus diisi'],
-    unique: true
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Player'
+  },
+  dataPerusahaan: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'DataPerusahaan'
   },
   status: {
     type: String,

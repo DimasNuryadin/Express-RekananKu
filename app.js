@@ -21,7 +21,7 @@ const pemilikRouter = require('./app/pemilik/router');
 const pengurusRouter = require('./app/pengurus/router');
 const tenagaAhliRouter = require('./app/tenaga-ahli/router');
 const usersRouter = require('./app/users/router');
-const playerRouter = require('./app/player/router');
+const authRouter = require('./app/auth/router');
 
 const app = express();
 const URL = `/api/v1`;
@@ -50,17 +50,16 @@ app.use('/dashboard', dashboardRouter);
 app.use('/calon-rekanan', calonRekananRouter);
 app.use('/rekanan', rekananRouter);
 app.use('/bukan-rekanan', bukanRekananRouter);
+// User Admin
+app.use('/', usersRouter);
 
+// API
 app.use('/data-perusahaan', dataPerusahaanRouter);
 app.use('/izin-usaha', izinUsahaRouter);
 app.use('/pemilik', pemilikRouter);
 app.use('/pengurus', pengurusRouter);
 app.use('/tenaga-ahli', tenagaAhliRouter);
-// User Admin
-app.use('/', usersRouter);
-
-// API
-app.use(`${URL}/players`, playerRouter);
+app.use(`${URL}/auth`, authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

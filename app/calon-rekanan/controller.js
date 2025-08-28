@@ -11,7 +11,10 @@ module.exports = {
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus }
-      const statusRekanan = await StatusRekanan.find({ status: 'Review' });
+      const statusRekanan = await StatusRekanan.find({ status: 'Review' })
+        .populate('dataPerusahaan', 'namaPerusahaan bidangUsaha');
+
+      console.log("cek", statusRekanan)
       res.render('admin/calon-rekanan/view_calon-rekanan', {
         statusRekanan, alert,
         email: req.session.user.email,
@@ -26,11 +29,11 @@ module.exports = {
   viewUser: async (req, res) => {
     try {
       const { userId } = req.params;
-      const dataPerusahaan = await DataPerusahaan.findOne({ userId: userId })
-      const izinUsaha = await IzinUsaha.find({ userId: userId })
-      const pemilik = await Pemilik.find({ userId: userId })
-      const pengurus = await Pengurus.find({ userId: userId })
-      const tenagaAhli = await TenagaAhli.find({ userId: userId })
+      const dataPerusahaan = await DataPerusahaan.findOne({ user: userId })
+      const izinUsaha = await IzinUsaha.find({ user: userId })
+      const pemilik = await Pemilik.find({ user: userId })
+      const pengurus = await Pengurus.find({ user: userId })
+      const tenagaAhli = await TenagaAhli.find({ user: userId })
       res.render('admin/calon-rekanan/view_user', {
         dataPerusahaan, izinUsaha, pemilik, pengurus, tenagaAhli, email: req.session.user.email,
         title: 'Halaman Data Calon Rekanan',
@@ -43,8 +46,8 @@ module.exports = {
   },
   actionCreate: async (req, res) => {
     try {
-      const { userId, status } = req.body;
-      const statusRekanan = await StatusRekanan({ userId, status })
+      const { user, status, dataPerusahaan } = req.body;
+      const statusRekanan = await StatusRekanan({ user, status, dataPerusahaan })
       await statusRekanan.save();
       res.status(200).json({ message: "Status rekanan berhasil dibuat", data: statusRekanan })
     } catch (err) {

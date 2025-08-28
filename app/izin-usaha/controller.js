@@ -12,7 +12,7 @@ module.exports = {
   getIzinUsaha: async (req, res) => {
     try {
       const { userId } = req.params;
-      const izinUsaha = await IzinUsaha.find({ userId });
+      const izinUsaha = await IzinUsaha.find({ user: userId });
       res.status(200).json({ message: "Data Izin Usaha berhasil difetch", data: izinUsaha })
     } catch (err) {
       res.json({ message: err })
@@ -20,9 +20,9 @@ module.exports = {
   },
   actionCreate: async (req, res) => {
     try {
-      const { userId, jenisIzin, noSurat, berlakuSampai, instansiPemberi } = req.body;
+      const { user, jenisIzin, noSurat, berlakuSampai, instansiPemberi } = req.body;
 
-      let izinUsaha = await IzinUsaha({ userId, jenisIzin, noSurat, berlakuSampai, instansiPemberi });
+      let izinUsaha = await IzinUsaha({ user, jenisIzin, noSurat, berlakuSampai, instansiPemberi });
       await izinUsaha.save();
       res.status(200).json({ message: "Data Izin Usaha berhasil ditambah", data: izinUsaha })
     } catch (err) {

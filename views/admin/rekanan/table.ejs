@@ -15,16 +15,18 @@
           <%= i + 1 %>
         </td>
         <td>
-          Bidang Usaha
+          <%= statusRekanan[i].dataPerusahaan.namaPerusahaan%>
         </td>
         <td>
-          Nama Perusahaan
+          <%= statusRekanan[i].dataPerusahaan.bidangUsaha %>
         </td>
         <td>
-          <%= statusRekanan[i].status %>
+          <span class="badge bg-success text-white">
+            <%= statusRekanan[i].status %>
+          </span>
         </td>
         <td class="d-flex gap-5">
-          <a class="btn btn-light mr-2" href="/rekanan/view-user/<%= statusRekanan[i].userId %>">Lihat</a>
+          <a class="btn btn-light mr-2" href="/rekanan/view-user/<%= statusRekanan[i].user %>">Lihat</a>
         </td>
       </tr>
       <% } %>
