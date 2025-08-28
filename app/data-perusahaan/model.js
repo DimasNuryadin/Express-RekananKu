@@ -44,7 +44,7 @@ const dataPerusahaanSchema = mongoose.Schema({
     type: String,
   },
   kantorCabang: {
-    type: Boolean
+    type: String
   }
 }, { timestamps: true })
 
