@@ -54,11 +54,11 @@ app.use('/bukan-rekanan', bukanRekananRouter);
 app.use('/', usersRouter);
 
 // API
-app.use('/data-perusahaan', dataPerusahaanRouter);
-app.use('/izin-usaha', izinUsahaRouter);
-app.use('/pemilik', pemilikRouter);
-app.use('/pengurus', pengurusRouter);
-app.use('/tenaga-ahli', tenagaAhliRouter);
+app.use(`${URL}/data-perusahaan`, dataPerusahaanRouter);
+app.use(`${URL}/izin-usaha`, izinUsahaRouter);
+app.use(`${URL}/pemilik`, pemilikRouter);
+app.use(`${URL}/pengurus`, pengurusRouter);
+app.use(`${URL}/tenaga-ahli`, tenagaAhliRouter);
 app.use(`${URL}/auth`, authRouter);
 
 // catch 404 and forward to error handler
