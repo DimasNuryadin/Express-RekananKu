@@ -4,11 +4,11 @@ const { index, viewUser, actionCreate, actionAccept, actionReject, } = require('
 
 const { isLoginAdmin } = require('../middleware/auth');
 
+router.post('/create', actionCreate);
 router.use(isLoginAdmin);
 
 router.get('/', index);
 router.get('/view-user/:userId', viewUser);
-router.post('/create', actionCreate);
 router.put('/accept/:id', actionAccept);
 router.put('/reject/:id', actionReject);
 

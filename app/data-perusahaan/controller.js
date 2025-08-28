@@ -13,7 +13,8 @@ module.exports = {
     const { userId } = req.params;
     try {
       const dataPerusahaan = await DataPerusahaan.find({ userId });
-      res.status(200).json({ message: "Data data perusahaan berhasil difetch", data: dataPerusahaan })
+      console.log('data', userId)
+      res.status(200).json({ message: "Data data perusahaan berhasil difetch", dataPerusahaan })
     } catch (err) {
       res.json({ message: err })
     }
