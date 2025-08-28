@@ -12,7 +12,7 @@ module.exports = {
   getDataPerusahaan: async (req, res) => {
     const { userId } = req.params;
     try {
-      const dataPerusahaan = await DataPerusahaan.find({ user: userId });
+      const dataPerusahaan = await DataPerusahaan.findOne({ user: userId });
       // console.log('data', userId)
       res.status(200).json({ message: "Data data perusahaan berhasil difetch", dataPerusahaan })
     } catch (err) {
