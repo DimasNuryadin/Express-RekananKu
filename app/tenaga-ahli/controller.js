@@ -6,7 +6,7 @@ module.exports = {
       const tenagaAhli = await TenagaAhli.find();
       res.status(200).json({ message: "Data tenaga ahli berhasil difetch", data: tenagaAhli })
     } catch (err) {
-      res.json({ message: err })
+      res.status(400).json({ message: err })
     }
   },
   getTenagaAhli: async (req, res) => {
@@ -15,7 +15,7 @@ module.exports = {
       const tenagaAhli = await TenagaAhli.find({ user: userId });
       res.status(200).json({ message: "Data tenaga ahli berhasil difetch", data: tenagaAhli })
     } catch (err) {
-      res.json({ message: err })
+      res.status(400).json({ message: err })
     }
   },
   actionCreate: async (req, res) => {
@@ -41,7 +41,7 @@ module.exports = {
       await tenagaAhli.save();
       res.status(200).json({ message: "Data tenaga ahli berhasil ditambah", data: tenagaAhli })
     } catch (err) {
-      res.json({ message: err })
+      res.status(400).json({ message: err })
     }
   },
   actionDelete: async (req, res) => {
@@ -50,7 +50,7 @@ module.exports = {
       await TenagaAhli.findByIdAndDelete({ _id: id })
       res.status(200).json({ message: "Data tenaga ahli berhasil dihapus" })
     } catch (err) {
-      res.json({ message: err })
+      res.status(400).json({ message: err })
     }
   }
 }

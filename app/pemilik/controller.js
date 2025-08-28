@@ -15,7 +15,7 @@ module.exports = {
       const pemilik = await Pemilik.find({ user: userId });
       res.status(200).json({ message: "Data pemilik berhasil difetch", data: pemilik })
     } catch (err) {
-      res.json({ message: err })
+      res.status(400).json({ message: err })
     }
   },
   actionCreate: async (req, res) => {
@@ -26,7 +26,7 @@ module.exports = {
       await pemilik.save();
       res.status(200).json({ message: "Data pemilik berhasil ditambah", data: pemilik })
     } catch (err) {
-      res.json({ message: err })
+      res.status(400).json({ message: err })
     }
   },
   actionDelete: async (req, res) => {
@@ -35,7 +35,7 @@ module.exports = {
       await Pemilik.findByIdAndDelete({ _id: id })
       res.status(200).json({ message: "Data pemilik berhasil dihapus" })
     } catch (err) {
-      res.json({ message: err })
+      res.status(400).json({ message: err })
     }
   }
 }

@@ -14,7 +14,7 @@ module.exports = {
       const statusRekanan = await StatusRekanan.find({ status: 'Review' })
         .populate('dataPerusahaan', 'namaPerusahaan bidangUsaha');
 
-      console.log("cek", statusRekanan)
+      // console.log("cek", statusRekanan)
       res.render('admin/calon-rekanan/view_calon-rekanan', {
         statusRekanan, alert,
         email: req.session.user.email,

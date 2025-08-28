@@ -6,7 +6,7 @@ module.exports = {
       const dataPerusahaan = await DataPerusahaan.find();
       res.status(200).json({ message: "Data data perusahaan berhasil difetch", data: dataPerusahaan })
     } catch (err) {
-      res.json({ message: err })
+      res.status(400).json({ message: err })
     }
   },
   getDataPerusahaan: async (req, res) => {
@@ -16,7 +16,7 @@ module.exports = {
       // console.log('data', userId)
       res.status(200).json({ message: "Data data perusahaan berhasil difetch", dataPerusahaan })
     } catch (err) {
-      res.json({ message: err })
+      res.status(400).json({ message: err })
     }
   },
   actionCreate: async (req, res) => {
@@ -40,7 +40,7 @@ module.exports = {
       await dataDb.save();
       res.status(200).json({ message: "Data dataPerusahaan berhasil ditambah", data: dataDb })
     } catch (err) {
-      res.json({ message: err })
+      res.status(400).json({ message: err })
     }
   },
   actionDelete: async (req, res) => {
@@ -49,7 +49,7 @@ module.exports = {
       await DataPerusahaan.findByIdAndDelete({ _id: id })
       res.status(200).json({ message: "Data data perusahaan berhasil dihapus" })
     } catch (err) {
-      res.json({ message: err })
+      res.status(400).json({ message: err })
     }
   }
 }

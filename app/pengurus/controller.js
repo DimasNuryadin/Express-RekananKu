@@ -6,7 +6,7 @@ module.exports = {
       const pengurus = await Pengurus.find();
       res.status(200).json({ message: "Data pengurus berhasil difetch", data: pengurus })
     } catch (err) {
-      res.json({ message: err })
+      res.status(400).json({ message: err })
     }
   },
   getPengurus: async (req, res) => {
@@ -15,7 +15,7 @@ module.exports = {
       const pengurus = await Pengurus.find({ user: userId });
       res.status(200).json({ message: "Data pengurus berhasil difetch", data: pengurus })
     } catch (err) {
-      res.json({ message: err })
+      res.status(400).json({ message: err })
     }
   },
   actionCreate: async (req, res) => {
@@ -26,7 +26,7 @@ module.exports = {
       await pengurus.save();
       res.status(200).json({ message: "Data pengurus berhasil ditambah", data: pengurus })
     } catch (err) {
-      res.json({ message: err })
+      res.status(400).json({ message: err })
     }
   },
   actionDelete: async (req, res) => {

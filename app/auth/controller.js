@@ -32,10 +32,10 @@ module.exports = {
           // Kirim token ke response
           res.status(200).json({ data: { token } })
         } else {
-          res.status(403).json({ message: 'password yang anda masukan salah' })
+          res.status(403).json({ message: 'password yang anda masukan salah', error: 'forbidden' })
         }
       } else {
-        res.status(403).json({ message: 'email yang anda masukan belum terdaftar' })
+        res.status(403).json({ message: 'email yang anda masukan belum terdaftar', error: 'forbidden' })
       }
     }).catch((err) => {
       res.status(500).json({ message: err.message || `Internal server error` })
