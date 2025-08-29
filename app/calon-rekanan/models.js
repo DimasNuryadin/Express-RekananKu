@@ -16,4 +16,14 @@ let statusRekananSchema = mongoose.Schema({
   }
 }, { timestamps: true })
 
+statusRekananSchema.path('user').validate(async function (value) {
+  try {
+    const count = await this.model('StatusRekanan').countDocuments({ user: value })
+    return !count;
+  } catch (err) {
+    // throw err
+    throw new Error(err)
+  }
+}, attr => `${attr.value} sudah terdaftar`)
+
 module.exports = mongoose.model('StatusRekanan', statusRekananSchema);

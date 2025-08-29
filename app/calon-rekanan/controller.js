@@ -44,10 +44,20 @@ module.exports = {
       res.redirect('/calon-rekanan')
     }
   },
+  getStatusRekanan: async (req, res) => {
+    const { userId } = req.params;
+    try {
+      const statusRekanan = await StatusRekanan.findOne({ user: userId });
+      // console.log('data', userId)
+      res.status(200).json({ message: "Data status rekanan berhasil difetch", data: statusRekanan })
+    } catch (err) {
+      res.status(400).json({ message: err })
+    }
+  },
   actionCreate: async (req, res) => {
     try {
-      const { user, status, dataPerusahaan } = req.body;
-      const statusRekanan = await StatusRekanan({ user, status, dataPerusahaan })
+      const { user, dataPerusahaan } = req.body;
+      const statusRekanan = await StatusRekanan({ user, dataPerusahaan })
       await statusRekanan.save();
       res.status(200).json({ message: "Status rekanan berhasil dibuat", data: statusRekanan })
     } catch (err) {
