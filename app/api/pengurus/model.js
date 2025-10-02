@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 
 const pengurusSchema = mongoose.Schema({
-  user: {
+  user_id: {
     type: mongoose.Schema.Types.ObjectId,
+    required: [true, "User id harus diisi!"],
     ref: 'Player'
   },
   nama: {
     type: String,
-    require: [true, "Nama harus diisi!"]
+    required: [true, "Nama harus diisi!"]
   },
   ktp: {
     type: String,
@@ -18,19 +19,19 @@ const pengurusSchema = mongoose.Schema({
   },
   alamat: {
     type: String,
-    require: [true, "Alamat harus diisi!"]
+    required: [true, "Alamat harus diisi!"]
   },
   jabatan: {
     type: String,
-    require: [true, "Jabatan harus diisi!"]
+    required: [true, "Jabatan harus diisi!"]
   },
   tanggalMulai: {
     type: Date,
-    require: [true, "Tanggal mulai selesai harus diisi!"]
+    required: [true, "Tanggal mulai selesai harus diisi!"]
   },
   tanggalSelesai: {
     type: Date,
-    require: [true, "Tanggal selesai harus diisi!"]
+    required: [true, "Tanggal selesai harus diisi!"]
   }
 }, { timestamps: true })
 

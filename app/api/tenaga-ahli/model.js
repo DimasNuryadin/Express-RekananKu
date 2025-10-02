@@ -1,28 +1,29 @@
 const mongoose = require('mongoose');
 
 const tenagaAhliSchema = mongoose.Schema({
-  user: {
+  user_id: {
     type: mongoose.Schema.Types.ObjectId,
+    required: [true, "User id harus diisi!"],
     ref: 'Player'
   },
   nama: {
     type: String,
-    require: [true, "Nama harus diisi!"]
+    required: [true, "Nama harus diisi!"]
   },
   alamat: {
     type: String,
-    require: [true, "Alamat harus diisi!"]
+    required: [true, "Alamat harus diisi!"]
   },
   pendidikanTerakhir: {
     type: String,
-    require: [true, "Pendidikan terakhir harus diisi!"]
+    required: [true, "Pendidikan terakhir harus diisi!"]
   },
   email: {
     type: String
   },
   profesiKeahlian: {
     type: String,
-    require: [true, "Profesi keahlian harus diisi!"]
+    required: [true, "Profesi keahlian harus diisi!"]
   },
   ktp: {
     type: String,
@@ -33,28 +34,28 @@ const tenagaAhliSchema = mongoose.Schema({
   },
   npwp: {
     type: String,
-    require: [true, "NPWP harus diisi!"]
+    required: [true, "NPWP harus diisi!"]
   },
   jenisKelamin: {
     type: String,
     enum: ["Pria", "Wanita"],
-    require: [true, "Jenis kelamin harus diisi!"]
+    required: [true, "Jenis kelamin harus diisi!"]
   },
   kewarganegaraan: {
     type: String,
   },
   pengalamanKerja: {
     type: Number,
-    require: [true, "Pengalaman kerja harus diisi!"]
+    required: [true, "Pengalaman kerja harus diisi!"]
   },
   jabatan: {
     type: String,
-    require: [true, "Jabatan harus diisi!"]
+    required: [true, "Jabatan harus diisi!"]
   },
   statusKepegawaian: {
     type: String,
     enum: ["Tetap", "Tidak Tetap"],
-    require: [true, "Status kepegawaian harus diisi!"]
+    required: [true, "Status kepegawaian harus diisi!"]
   }
 }, { timestamps: true })
 

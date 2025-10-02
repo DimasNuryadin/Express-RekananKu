@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 
 const pemilikSchema = mongoose.Schema({
-  user: {
+  user_id: {
     type: mongoose.Schema.Types.ObjectId,
+    required: [true, "User id harus diisi"],
     ref: 'Player'
   },
   nama: {
     type: String,
-    require: [true, "Nama harus diisi!"]
+    required: [true, "Nama harus diisi!"]
   },
   ktp: {
     type: String,
@@ -18,11 +19,11 @@ const pemilikSchema = mongoose.Schema({
   },
   alamat: {
     type: String,
-    require: [true, "Alamat harus diisi!"]
+    required: [true, "Alamat harus diisi!"]
   },
   saham: {
     type: Number,
-    require: [true, "Saham harus diisi!"]
+    required: [true, "Saham harus diisi!"]
   }
 }, { timestamps: true })
 

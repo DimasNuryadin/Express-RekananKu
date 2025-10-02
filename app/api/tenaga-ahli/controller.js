@@ -1,28 +1,21 @@
 const TenagaAhli = require('./model')
 
 module.exports = {
-  getAllTenagaAhli: async (req, res) => {
+  actionGet: async (req, res) => {
     try {
-      const tenagaAhli = await TenagaAhli.find();
-      res.status(200).json({ message: "Data tenaga ahli berhasil difetch", data: tenagaAhli })
+      const user_id = req.player._id;
+      const tenagaAhli = await TenagaAhli.find({ user_id });
+      return res.status(200).json({ message: "Data tenaga ahli berhasil difetch", data: tenagaAhli })
     } catch (err) {
-      res.status(400).json({ message: err })
-    }
-  },
-  getTenagaAhli: async (req, res) => {
-    const { userId } = req.params;
-    try {
-      const tenagaAhli = await TenagaAhli.find({ user: userId });
-      res.status(200).json({ message: "Data tenaga ahli berhasil difetch", data: tenagaAhli })
-    } catch (err) {
-      res.status(400).json({ message: err })
+      return res.status(500).json({ message: "Terjadi kesalahan server", error: err.message });
     }
   },
   actionCreate: async (req, res) => {
     try {
+      const user_id = req.player._id;
       const data = req.body;
       const dataTenagaAhli = {
-        user: data.user,
+        user_id,
         nama: data.nama,
         alamat: data.alamat,
         pendidikanTerakhir: data.pendidikanTerakhir,
@@ -37,20 +30,20 @@ module.exports = {
         statusKepegawaian: data.statusKepegawaian,
       }
 
-      let tenagaAhli = await TenagaAhli(dataTenagaAhli);
+      let tenagaAhli = new TenagaAhli(dataTenagaAhli);
       await tenagaAhli.save();
-      res.status(200).json({ message: "Data tenaga ahli berhasil ditambah", data: tenagaAhli })
+      return res.status(201).json({ message: "Data tenaga ahli berhasil ditambah", data: tenagaAhli })
     } catch (err) {
-      res.status(400).json({ message: err })
+      return res.status(500).json({ message: "Terjadi kesalahan server", error: err.message });
     }
   },
   actionDelete: async (req, res) => {
     try {
       const { id } = req.params;
       await TenagaAhli.findByIdAndDelete({ _id: id })
-      res.status(200).json({ message: "Data tenaga ahli berhasil dihapus" })
+      return res.status(200).json({ message: "Data tenaga ahli berhasil dihapus" })
     } catch (err) {
-      res.status(400).json({ message: err })
+      return res.status(500).json({ message: "Terjadi kesalahan server", error: err.message });
     }
   }
 }

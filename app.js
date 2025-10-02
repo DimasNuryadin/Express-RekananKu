@@ -17,12 +17,13 @@ const bukanRekananRouter = require('./app/admin/bukan-rekanan/router');
 const usersRouter = require('./app/admin/users/router');
 
 // API
+const authRouter = require('./app/api/auth/router');
 const dataPerusahaanRouter = require('./app/api/data-perusahaan/router');
 const izinUsahaRouter = require('./app/api/izin-usaha/router');
 const pemilikRouter = require('./app/api/pemilik/router');
 const pengurusRouter = require('./app/api/pengurus/router');
 const tenagaAhliRouter = require('./app/api/tenaga-ahli/router');
-const authRouter = require('./app/api/auth/router');
+const statusRekananRouter = require('./app/api/status-rekanan/router');
 
 const app = express();
 
@@ -49,20 +50,21 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lte')))
 
+// User Admin
 app.use('/dashboard', dashboardRouter);
 app.use('/calon-rekanan', calonRekananRouter);
 app.use('/rekanan', rekananRouter);
 app.use('/bukan-rekanan', bukanRekananRouter);
-// User Admin
 app.use('/', usersRouter);
 
 // API
+app.use(`${URL}/auth`, authRouter);
 app.use(`${URL}/data-perusahaan`, dataPerusahaanRouter);
 app.use(`${URL}/izin-usaha`, izinUsahaRouter);
 app.use(`${URL}/pemilik`, pemilikRouter);
 app.use(`${URL}/pengurus`, pengurusRouter);
 app.use(`${URL}/tenaga-ahli`, tenagaAhliRouter);
-app.use(`${URL}/auth`, authRouter);
+app.use(`${URL}/status-rekanan`, statusRekananRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

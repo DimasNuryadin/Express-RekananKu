@@ -1,20 +1,22 @@
 const mongoose = require('mongoose');
 let statusRekananSchema = mongoose.Schema({
-  user: {
+  user_id: {
     type: mongoose.Schema.Types.ObjectId,
+    required: [true, "User id rekanan harus diisi!"],
+    unique: true,
     ref: 'Player'
   },
   status: {
     type: String,
-    require: [true, "Status rekanan harus diisi!"],
+    required: [true, "Status rekanan harus diisi!"],
     enum: ['Review', 'Rekanan', 'Bukan Rekanan'],
     default: 'Review'
   }
 }, { timestamps: true })
 
-statusRekananSchema.path('user').validate(async function (value) {
+statusRekananSchema.path('user_id').validate(async function (value) {
   try {
-    const count = await this.model('StatusRekanan').countDocuments({ user: value })
+    const count = await this.model('StatusRekanan').countDocuments({ user_id: value })
     return !count;
   } catch (err) {
     // throw err

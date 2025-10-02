@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const izinUsahaSchema = mongoose.Schema({
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
+    required: [true, "User id harus diisi"],
     ref: 'Player'
   },
   jenisIzin: {

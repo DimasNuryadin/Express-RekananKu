@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { actionCreate, actionDelete, getAllPengurus, getPengurus } = require('./controller');
+const { actionCreate, actionDelete, actionGet } = require('./controller');
+const { isLoginPlayer } = require("../../middleware/auth");
 
-router.get('/', getAllPengurus);
-router.get('/:userId', getPengurus);
-router.post('/', actionCreate);
-router.delete('/:id', actionDelete);
+router.get('/', isLoginPlayer, actionGet);
+router.post('/', isLoginPlayer, actionCreate);
+router.delete('/:id', isLoginPlayer, actionDelete);
 
 module.exports = router;

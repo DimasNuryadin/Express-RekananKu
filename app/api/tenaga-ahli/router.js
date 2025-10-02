@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { getTenagaAhli, actionCreate, actionDelete, getAllTenagaAhli } = require('./controller');
+const { actionGet, actionCreate, actionDelete } = require('./controller');
+const { isLoginPlayer } = require('../../middleware/auth')
 
-router.get('/', getAllTenagaAhli);
-router.get('/:userId', getTenagaAhli);
-router.post('/', actionCreate);
-router.delete('/:id', actionDelete);
+router.get('/', isLoginPlayer, actionGet);
+router.post('/', isLoginPlayer, actionCreate);
+router.delete('/:id', isLoginPlayer, actionDelete);
 
 module.exports = router;

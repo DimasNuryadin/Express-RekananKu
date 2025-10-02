@@ -4,10 +4,10 @@ module.exports = {
   actionGet: async (req, res) => {
     try {
       const user_id = req.player._id;
-      const izinUsaha = await IzinUsaha.findOne({ user_id });
+      const izinUsaha = await IzinUsaha.find({ user_id });
       return res.status(200).json({ message: "Data Izin Usaha berhasil difetch", data: izinUsaha })
     } catch (err) {
-      return res.json({ message: err })
+      return res.status(500).json({ message: "Terjadi kesalahan server", error: err.message });
     }
   },
   actionCreate: async (req, res) => {
@@ -26,7 +26,7 @@ module.exports = {
     try {
       const { id } = req.params;
       await IzinUsaha.findByIdAndDelete({ _id: id })
-      res.status(200).json({ message: "Data Izin Usaha berhasil dihapus" })
+      return res.status(200).json({ message: "Data Izin Usaha berhasil dihapus" })
     } catch (err) {
       return res.status(500).json({ message: "Terjadi kesalahan server", error: err.message });
     }
