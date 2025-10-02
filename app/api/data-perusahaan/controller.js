@@ -1,55 +1,117 @@
 const DataPerusahaan = require('./model')
 
 module.exports = {
-  getAllDataPerusahaan: async (req, res) => {
-    try {
-      const dataPerusahaan = await DataPerusahaan.find();
-      res.status(200).json({ message: "Data data perusahaan berhasil difetch", data: dataPerusahaan })
-    } catch (err) {
-      res.status(400).json({ message: err })
-    }
-  },
   getDataPerusahaan: async (req, res) => {
-    const { userId } = req.params;
     try {
-      const dataPerusahaan = await DataPerusahaan.findOne({ user: userId });
-      // console.log('data', userId)
-      res.status(200).json({ message: "Data data perusahaan berhasil difetch", data: dataPerusahaan })
+      const user_id = req.player._id;
+      const dataPerusahaan = await DataPerusahaan.findOne({ user_id });
+      return res.status(200).json({ message: "Data data perusahaan berhasil difetch", data: dataPerusahaan })
     } catch (err) {
-      res.status(400).json({ message: err })
+      return res.status(400).json({ message: err })
     }
   },
   actionCreate: async (req, res) => {
     try {
-      const data = req.body;
-      const dataPerusahaan = {
-        user: data.user,
-        namaPerusahaan: data.namaPerusahaan,
-        bidangUsaha: data.bidangUsaha,
-        tipe: data.tipe,
-        npwp: data.npwp,
-        alamat: data.alamat,
-        kota: data.kota,
-        provinsi: data.provinsi,
-        kodePos: data.kodePos,
-        telepon: data.telepon,
-        website: data.website,
-        kantorCabang: data.kantorCabang,
+      const user_id = req.player._id;
+      const {
+        namaPerusahaan,
+        bidangUsaha,
+        tipe,
+        npwp,
+        alamat,
+        kota,
+        provinsi,
+        kodePos,
+        telepon,
+        website,
+        kantorCabang
+      } = req.body;
+
+      if (!namaPerusahaan || !npwp) {
+        return res.status(400).json({ message: "Nama perusahaan dan NPWP wajib diisi" });
       }
-      let dataDb = await DataPerusahaan(dataPerusahaan);
+
+      const fetchData = await DataPerusahaan.findOne({ user_id });
+      if (fetchData) {
+        return res.status(409).json({ message: "Data perusahaan sudah ada untuk user ini" });
+      }
+
+      const dataDb = new DataPerusahaan({
+        user_id,
+        namaPerusahaan,
+        bidangUsaha,
+        tipe,
+        npwp,
+        alamat,
+        kota,
+        provinsi,
+        kodePos,
+        telepon,
+        website,
+        kantorCabang,
+      });
       await dataDb.save();
-      res.status(200).json({ message: "Data dataPerusahaan berhasil ditambah", data: dataDb })
+
+      return res.status(201).json({
+        message: "Data perusahaan berhasil ditambah",
+        data: dataDb,
+      });
     } catch (err) {
-      res.status(400).json({ message: err })
+      return res.status(500).json({ message: "Terjadi kesalahan server", error: err.message });
     }
   },
-  actionDelete: async (req, res) => {
+
+  actionEdit: async (req, res) => {
     try {
-      const { id } = req.params;
-      await DataPerusahaan.findByIdAndDelete({ _id: id })
-      res.status(200).json({ message: "Data data perusahaan berhasil dihapus" })
+      const user_id = req.player._id;
+      const {
+        namaPerusahaan,
+        bidangUsaha,
+        tipe,
+        npwp,
+        alamat,
+        kota,
+        provinsi,
+        kodePos,
+        telepon,
+        website,
+        kantorCabang
+      } = req.body;
+
+      if (!namaPerusahaan || !npwp) {
+        return res.status(400).json({ message: "Nama perusahaan dan NPWP wajib diisi" });
+      }
+
+      const fetchData = await DataPerusahaan.findOne({ user_id });
+      if (!fetchData) {
+        return res.status(404).json({ message: "Data perusahaan belum ada, silakan tambahkan terlebih dahulu" });
+      }
+
+      const updatedData = await DataPerusahaan.findOneAndUpdate(
+        { user_id },
+        {
+          namaPerusahaan,
+          bidangUsaha,
+          tipe,
+          npwp,
+          alamat,
+          kota,
+          provinsi,
+          kodePos,
+          telepon,
+          website,
+          kantorCabang,
+        },
+        { new: true, runValidators: true } // agar validasi mongoose jalan
+      );
+
+      return res.status(200).json({
+        message: "Data perusahaan berhasil diperbarui",
+        data: updatedData,
+      });
+
     } catch (err) {
-      res.status(400).json({ message: err })
+      return res.status(500).json({ message: "Terjadi kesalahan server", error: err.message });
     }
-  }
+  },
 }

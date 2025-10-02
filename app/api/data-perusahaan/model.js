@@ -1,17 +1,18 @@
 const mongoose = require('mongoose');
 
 const dataPerusahaanSchema = mongoose.Schema({
-  user: {
+  user_id: {
     type: mongoose.Schema.Types.ObjectId,
+    required: [true, "User id harus diisi"],
     ref: 'Player'
   },
   namaPerusahaan: {
     type: String,
-    require: [true, "Nama perusahaan harus diisi!"]
+    required: [true, "Nama perusahaan harus diisi!"]
   },
   bidangUsaha: {
     type: String,
-    require: [true, "Bidang usaha perusahaan harus diisi!"]
+    required: [true, "Bidang usaha perusahaan harus diisi!"]
   },
   tipe: {
     type: String,
@@ -19,26 +20,26 @@ const dataPerusahaanSchema = mongoose.Schema({
   },
   npwp: {
     type: String,
+    required: [true, "NPWP harus diisi!"]
   },
   telepon: {
     type: String,
-    require: [true, "Telepon harus diisi!"],
+    required: [true, "Telepon harus diisi!"],
     minLength: [8, "Panjang telepon min 8 karakter"]
   },
   website: {
     type: String
   },
-
   alamat: {
     type: String,
   },
   kota: {
     type: String,
-    require: [true, "Kota harus diisi!"]
+    required: [true, "Kota harus diisi!"]
   },
   provinsi: {
     type: String,
-    require: [true, "Provinsi harus diisi!"]
+    required: [true, "Provinsi harus diisi!"]
   },
   kodePos: {
     type: String,
