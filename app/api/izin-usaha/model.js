@@ -1,25 +1,25 @@
 const mongoose = require('mongoose');
 
 const izinUsahaSchema = mongoose.Schema({
-  user: {
+  user_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Player'
   },
   jenisIzin: {
     type: String,
-    require: [true, "Jenis izin harus diisi!"]
+    required: [true, "Jenis izin harus diisi!"]
   },
   noSurat: {
     type: String,
-    require: [true, "No surat harus diisi!"]
+    required: [true, "No surat harus diisi!"]
   },
   berlakuSampai: {
     type: String,
-    require: [true, "Berlaku harus diisi!"]
+    required: [true, "Berlaku harus diisi!"]
   },
   instansiPemberi: {
     type: String,
-    require: [true, "Instansi pemberi harus diisi!"]
+    required: [true, "Instansi pemberi harus diisi!"]
   }
 }, { timestamps: true })
 

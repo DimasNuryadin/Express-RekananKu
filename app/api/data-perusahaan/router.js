@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { actionCreate, getDataPerusahaan, actionEdit } = require('./controller');
+const { actionCreate, actionEdit, actionGet } = require('./controller');
 const { isLoginPlayer } = require('../../middleware/auth');
 
-router.get('/', isLoginPlayer, getDataPerusahaan);
+router.get('/', isLoginPlayer, actionGet);
 router.post('/', isLoginPlayer, actionCreate);
 router.put('/', isLoginPlayer, actionEdit);
 

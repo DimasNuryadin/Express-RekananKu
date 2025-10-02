@@ -1,7 +1,7 @@
 const DataPerusahaan = require('./model')
 
 module.exports = {
-  getDataPerusahaan: async (req, res) => {
+  actionGet: async (req, res) => {
     try {
       const user_id = req.player._id;
       const dataPerusahaan = await DataPerusahaan.findOne({ user_id });
