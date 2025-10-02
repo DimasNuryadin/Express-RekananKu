@@ -1,6 +1,6 @@
 const Player = require('./model');
 const bcrypt = require('bcryptjs');
-const config = require("../../config");
+const config = require("../../../config");
 const jwt = require('jsonwebtoken');
 
 module.exports = {

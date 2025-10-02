@@ -9,20 +9,20 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const cors = require('cors')
 
-
-const dashboardRouter = require('./app/dashboard/router');
-const calonRekananRouter = require('./app/calon-rekanan/router');
-const rekananRouter = require('./app/rekanan/router');
-const bukanRekananRouter = require('./app/bukan-rekanan/router');
+// Admin
+const dashboardRouter = require('./app/admin/dashboard/router');
+const calonRekananRouter = require('./app/admin/calon-rekanan/router');
+const rekananRouter = require('./app/admin/rekanan/router');
+const bukanRekananRouter = require('./app/admin/bukan-rekanan/router');
+const usersRouter = require('./app/admin/users/router');
 
 // API
-const dataPerusahaanRouter = require('./app/data-perusahaan/router');
-const izinUsahaRouter = require('./app/izin-usaha/router');
-const pemilikRouter = require('./app/pemilik/router');
-const pengurusRouter = require('./app/pengurus/router');
-const tenagaAhliRouter = require('./app/tenaga-ahli/router');
-const usersRouter = require('./app/users/router');
-const authRouter = require('./app/auth/router');
+const dataPerusahaanRouter = require('./app/api/data-perusahaan/router');
+const izinUsahaRouter = require('./app/api/izin-usaha/router');
+const pemilikRouter = require('./app/api/pemilik/router');
+const pengurusRouter = require('./app/api/pengurus/router');
+const tenagaAhliRouter = require('./app/api/tenaga-ahli/router');
+const authRouter = require('./app/api/auth/router');
 
 const app = express();
 

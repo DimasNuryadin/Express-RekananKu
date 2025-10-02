@@ -1,7 +1,7 @@
 const config = require("../../config");
 const jwt = require('jsonwebtoken');
 
-const Player = require("../auth/model");
+const Player = require("../api/auth/model");
 
 module.exports = {
   isLoginAdmin: (req, res, next) => {

@@ -1,9 +1,9 @@
-const StatusRekanan = require('./models')
-const DataPerusahaan = require('../data-perusahaan/model');
-const IzinUsaha = require('../izin-usaha/model');
-const Pemilik = require('../pemilik/model');
-const Pengurus = require('../pengurus/model');
-const TenagaAhli = require('../tenaga-ahli/model');
+const StatusRekanan = require('../../api/status-rekanan/model');
+const DataPerusahaan = require('../../api/data-perusahaan/model');
+const IzinUsaha = require('../../api/izin-usaha/model');
+const Pemilik = require('../../api/pemilik/model');
+const Pengurus = require('../../api/pengurus/model');
+const TenagaAhli = require('../../api/tenaga-ahli/model');
 
 module.exports = {
   index: async (req, res) => {

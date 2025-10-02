@@ -26,15 +26,20 @@ const server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
+// Jalankan server langsung
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+server.on('error', onError);
+server.on('listening', onListening);
+
+// Cek koneksi database (opsional, hanya log)
 db.on('error', function (err) {
-  console.log("Connection error: Tidak bisa tersambung ke mongodb")
-})
+  console.log("Connection error: Tidak bisa tersambung ke MongoDB");
+});
 db.on('open', function () {
-  server.listen(port);
-  server.on('error', onError);
-  server.on('listening', onListening);
-  // console.log("Cek DB bosku")
-})
+  console.log("MongoDB Connected");
+});
 
 /**
  * Normalize a port into a number, string, or false.

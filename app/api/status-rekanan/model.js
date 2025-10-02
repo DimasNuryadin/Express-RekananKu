@@ -4,10 +4,6 @@ let statusRekananSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Player'
   },
-  dataPerusahaan: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'DataPerusahaan'
-  },
   status: {
     type: String,
     require: [true, "Status rekanan harus diisi!"],
