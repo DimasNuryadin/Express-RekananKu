@@ -14,7 +14,7 @@ module.exports = {
     try {
       const dataPerusahaan = await DataPerusahaan.findOne({ user: userId });
       // console.log('data', userId)
-      res.status(200).json({ message: "Data data perusahaan berhasil difetch", dataPerusahaan })
+      res.status(200).json({ message: "Data data perusahaan berhasil difetch", data: dataPerusahaan })
     } catch (err) {
       res.status(400).json({ message: err })
     }
