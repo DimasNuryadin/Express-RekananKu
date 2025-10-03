@@ -12,7 +12,6 @@ const dataPerusahaanSchema = mongoose.Schema({
   },
   bidangUsaha: {
     type: String,
-    required: [true, "Bidang usaha perusahaan harus diisi!"]
   },
   tipe: {
     type: String,
@@ -20,7 +19,6 @@ const dataPerusahaanSchema = mongoose.Schema({
   },
   npwp: {
     type: String,
-    required: [true, "NPWP harus diisi!"]
   },
   telepon: {
     type: String,
@@ -35,11 +33,9 @@ const dataPerusahaanSchema = mongoose.Schema({
   },
   kota: {
     type: String,
-    required: [true, "Kota harus diisi!"]
   },
   provinsi: {
     type: String,
-    required: [true, "Provinsi harus diisi!"]
   },
   kodePos: {
     type: String,

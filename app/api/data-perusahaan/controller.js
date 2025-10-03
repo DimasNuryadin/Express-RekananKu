@@ -10,62 +10,10 @@ module.exports = {
       return res.status(400).json({ message: err })
     }
   },
-  actionCreate: async (req, res) => {
-    try {
-      const user_id = req.player._id;
-      const {
-        namaPerusahaan,
-        bidangUsaha,
-        tipe,
-        npwp,
-        alamat,
-        kota,
-        provinsi,
-        kodePos,
-        telepon,
-        website,
-        kantorCabang
-      } = req.body;
-
-      if (!namaPerusahaan || !npwp) {
-        return res.status(400).json({ message: "Nama perusahaan dan NPWP wajib diisi" });
-      }
-
-      const fetchData = await DataPerusahaan.findOne({ user_id });
-      if (fetchData) {
-        return res.status(409).json({ message: "Data perusahaan sudah ada untuk user ini" });
-      }
-
-      const dataDb = new DataPerusahaan({
-        user_id,
-        namaPerusahaan,
-        bidangUsaha,
-        tipe,
-        npwp,
-        alamat,
-        kota,
-        provinsi,
-        kodePos,
-        telepon,
-        website,
-        kantorCabang,
-      });
-      await dataDb.save();
-
-      return res.status(201).json({
-        message: "Data perusahaan berhasil ditambah",
-        data: dataDb,
-      });
-    } catch (err) {
-      return res.status(500).json({ message: "Terjadi kesalahan server", error: err.message });
-    }
-  },
-
   actionEdit: async (req, res) => {
     try {
       const user_id = req.player._id;
       const {
-        namaPerusahaan,
         bidangUsaha,
         tipe,
         npwp,
@@ -73,13 +21,12 @@ module.exports = {
         kota,
         provinsi,
         kodePos,
-        telepon,
         website,
         kantorCabang
       } = req.body;
 
-      if (!namaPerusahaan || !npwp) {
-        return res.status(400).json({ message: "Nama perusahaan dan NPWP wajib diisi" });
+      if (!bidangUsaha || !npwp) {
+        return res.status(400).json({ message: "Bidang usaha dan NPWP wajib diisi" });
       }
 
       const fetchData = await DataPerusahaan.findOne({ user_id });
@@ -90,7 +37,6 @@ module.exports = {
       const updatedData = await DataPerusahaan.findOneAndUpdate(
         { user_id },
         {
-          namaPerusahaan,
           bidangUsaha,
           tipe,
           npwp,
@@ -98,7 +44,6 @@ module.exports = {
           kota,
           provinsi,
           kodePos,
-          telepon,
           website,
           kantorCabang,
         },

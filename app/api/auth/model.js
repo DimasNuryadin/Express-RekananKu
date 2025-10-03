@@ -4,13 +4,17 @@ const bcrypt = require('bcryptjs')
 const HASH_ROUND = 10;
 
 const playerSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "Nama harus diisi!"]
+  },
   email: {
     type: String,
-    require: [true, "Email harus diisi!"]
+    required: [true, "Email harus diisi!"]
   },
   password: {
     type: String,
-    require: [true, "Password harus diisi!"],
+    required: [true, "Password harus diisi!"],
     maxLength: [225, "Panjang password maksimal 225 karakter"],
   }
 }, { timestamps: true })  // Untuk menambah createdAt dan updateAt

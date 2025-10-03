@@ -1,4 +1,5 @@
 const Player = require('./model');
+const DataPerusahaan = require('../data-perusahaan/model');
 const bcrypt = require('bcryptjs');
 const config = require("../../../config");
 const jwt = require('jsonwebtoken');
@@ -6,12 +7,15 @@ const jwt = require('jsonwebtoken');
 module.exports = {
   signUp: async (req, res) => {
     try {
-      const { email, password } = req.body;
-      const newPlayer = new Player({ email, password });
+      const { name, email, password, namaPerusahaan, telepon } = req.body;
+      const newPlayer = new Player({ name, email, password });
       await newPlayer.save();
-      res.status(201).json({ message: 'Berhasil sign up', playerId: newPlayer._id });
+
+      const dataPerusahaan = new DataPerusahaan({ user_id: newPlayer._id, namaPerusahaan, telepon });
+      await dataPerusahaan.save();
+      res.status(201).json({ message: 'Berhasil sign up', playerId: newPlayer._id, dataPerusahaanId: dataPerusahaan._id });
     } catch (error) {
-      res.status(500).json({ message: 'Error creating player', error });
+      res.status(500).json({ message: 'Error creating account', error: error.message });
     }
   },
   signIn: async (req, res, next) => {
