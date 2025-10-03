@@ -23,6 +23,7 @@ module.exports = {
         if (checkPassword) {
           // JWT, create token
           const token = jwt.sign({
+            exp: Math.floor(Date.now() / 1000) + (60 * 60),
             player: {
               id: player.id,
               email: player.email,

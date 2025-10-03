@@ -10,13 +10,13 @@ module.exports = {
       if (req.session.user === null || req.session.user === undefined) {
         res.render('admin/users/view_signin', { alert, title: "Halaman Sign In" });
       } else {
-        res.redirect('/dashboard');
+        res.redirect('/admin/dashboard');
       }
 
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
       req.flash("alertStatus", "danger");
-      res.redirect('/')
+      res.redirect('/admin')
     }
   },
   actionSignin: async (req, res) => {
@@ -32,26 +32,26 @@ module.exports = {
             email: check.email,
             // status: check.status
           }
-          res.redirect('/dashboard');
+          res.redirect('/admin/dashboard');
         } else {
           req.flash("alertMessage", "Kata sandi salah");
           req.flash("alertStatus", "danger");
-          res.redirect('/');
+          res.redirect('/admin');
         }
       } else {
         req.flash("alertMessage", "User tidak ditemukan");
         req.flash("alertStatus", "danger");
-        res.redirect('/');
+        res.redirect('/admin');
       }
 
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
       req.flash("alertStatus", "danger");
-      res.redirect('/')
+      res.redirect('/admin')
     }
   },
   actionLogout: (req, res) => {
     req.session.destroy();
-    res.redirect('/');
+    res.redirect('/admin');
   }
 }

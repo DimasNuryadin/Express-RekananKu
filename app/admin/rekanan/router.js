@@ -6,6 +6,6 @@ const { isLoginAdmin } = require('../../middleware/auth');
 
 router.use(isLoginAdmin);
 router.get('/', index);
-router.get('/view-user/:userId', viewUser);
+router.get('/view-user/:user_id', viewUser);
 
 module.exports = router;

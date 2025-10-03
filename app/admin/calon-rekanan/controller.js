@@ -12,9 +12,8 @@ module.exports = {
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus }
       const statusRekanan = await StatusRekanan.find({ status: 'Review' })
-        .populate('dataPerusahaan', 'namaPerusahaan bidangUsaha');
+        .populate('data_perusahaan');
 
-      // console.log("cek", statusRekanan)
       res.render('admin/calon-rekanan/view_calon-rekanan', {
         statusRekanan, alert,
         email: req.session.user.email,
@@ -23,17 +22,17 @@ module.exports = {
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
       req.flash("alertStatus", "danger");
-      res.redirect('/calon-rekanan')
+      res.redirect('/admin/calon-rekanan')
     }
   },
   viewUser: async (req, res) => {
     try {
-      const { userId } = req.params;
-      const dataPerusahaan = await DataPerusahaan.findOne({ user: userId })
-      const izinUsaha = await IzinUsaha.find({ user: userId })
-      const pemilik = await Pemilik.find({ user: userId })
-      const pengurus = await Pengurus.find({ user: userId })
-      const tenagaAhli = await TenagaAhli.find({ user: userId })
+      const { user_id } = req.params;
+      const dataPerusahaan = await DataPerusahaan.findOne({ user_id });
+      const izinUsaha = await IzinUsaha.find({ user_id })
+      const pemilik = await Pemilik.find({ user_id })
+      const pengurus = await Pengurus.find({ user_id })
+      const tenagaAhli = await TenagaAhli.find({ user_id })
       res.render('admin/calon-rekanan/view_user', {
         dataPerusahaan, izinUsaha, pemilik, pengurus, tenagaAhli, email: req.session.user.email,
         title: 'Halaman Data Calon Rekanan',
@@ -41,27 +40,7 @@ module.exports = {
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
       req.flash("alertStatus", "danger");
-      res.redirect('/calon-rekanan')
-    }
-  },
-  getStatusRekanan: async (req, res) => {
-    const { userId } = req.params;
-    try {
-      const statusRekanan = await StatusRekanan.findOne({ user: userId });
-      // console.log('data', userId)
-      res.status(200).json({ message: "Data status rekanan berhasil difetch", data: statusRekanan })
-    } catch (err) {
-      res.status(400).json({ message: err })
-    }
-  },
-  actionCreate: async (req, res) => {
-    try {
-      const { user, dataPerusahaan } = req.body;
-      const statusRekanan = await StatusRekanan({ user, dataPerusahaan })
-      await statusRekanan.save();
-      res.status(200).json({ message: "Status rekanan berhasil dibuat", data: statusRekanan })
-    } catch (err) {
-      res.json({ err })
+      res.redirect('/admin/calon-rekanan')
     }
   },
   actionAccept: async (req, res) => {
@@ -70,9 +49,11 @@ module.exports = {
       await StatusRekanan.findOneAndUpdate({ _id: id }, { status: "Rekanan" })
       req.flash("alertMessage", "Berhasil terima calon rekanan");
       req.flash("alertStatus", "success");
-      res.redirect("/calon-rekanan")
+      res.redirect("/admin/calon-rekanan")
     } catch (err) {
-      res.json({ err })
+      req.flash("alertMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect('/admin/calon-rekanan')
     }
   },
   actionReject: async (req, res) => {
@@ -81,9 +62,11 @@ module.exports = {
       await StatusRekanan.findOneAndUpdate({ _id: id }, { status: "Bukan Rekanan" })
       req.flash("alertMessage", "Berhasil tolak calon rekanan");
       req.flash("alertStatus", "success");
-      res.redirect("/calon-rekanan")
+      res.redirect("/admin/calon-rekanan")
     } catch (err) {
-      res.json({ err })
+      req.flash("alertMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect('/admin/calon-rekanan')
     }
   }
 }

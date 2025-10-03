@@ -1,4 +1,5 @@
-const StatusRekanan = require('./model')
+const StatusRekanan = require('./model');
+const DataPerusahaan = require('../data-perusahaan/model');
 
 module.exports = {
   actionGet: async (req, res) => {
@@ -14,9 +15,10 @@ module.exports = {
     try {
       const user_id = req.player._id;
 
-      const getStatus = StatusRekanan.findOne({ user_id });
+      const getStatus = await StatusRekanan.findOne({ user_id });
+      const getDataPerusahaan = await DataPerusahaan.findOne({ user_id });
       if (!getStatus) {
-        const statusRekanan = new StatusRekanan({ user_id });
+        const statusRekanan = new StatusRekanan({ user_id, data_perusahaan: getDataPerusahaan._id });
         await statusRekanan.save();
         return res.status(201).json({
           message: "Status berhasil ditambah",

@@ -8,7 +8,7 @@ module.exports = {
     if (req.session.user === null || req.session.user === undefined) {
       req.flash("alertMessage", `Mohon maaf session anda telah habis silahkan login kembali`);
       req.flash("alertStatus", "danger");
-      res.redirect('/')
+      res.redirect('/admin')
     } else {
       next();
     }

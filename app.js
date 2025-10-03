@@ -10,11 +10,12 @@ const flash = require('connect-flash')
 const cors = require('cors')
 
 // Admin
+const adminRouter = express.Router();
+const authAdminRouter = require('./app/admin/users/router');
 const dashboardRouter = require('./app/admin/dashboard/router');
 const calonRekananRouter = require('./app/admin/calon-rekanan/router');
 const rekananRouter = require('./app/admin/rekanan/router');
 const bukanRekananRouter = require('./app/admin/bukan-rekanan/router');
-const usersRouter = require('./app/admin/users/router');
 
 // API
 const authRouter = require('./app/api/auth/router');
@@ -51,11 +52,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lte')))
 
 // User Admin
-app.use('/dashboard', dashboardRouter);
-app.use('/calon-rekanan', calonRekananRouter);
-app.use('/rekanan', rekananRouter);
-app.use('/bukan-rekanan', bukanRekananRouter);
-app.use('/', usersRouter);
+adminRouter.use('/', authAdminRouter);
+adminRouter.use('/dashboard', dashboardRouter);
+adminRouter.use('/calon-rekanan', calonRekananRouter);
+adminRouter.use('/rekanan', rekananRouter);
+adminRouter.use('/bukan-rekanan', bukanRekananRouter);
+app.use('/admin', adminRouter);
 
 // API
 app.use(`${URL}/auth`, authRouter);
