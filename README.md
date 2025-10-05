@@ -72,9 +72,9 @@ Penjelasan:
 
 3. Buat file `.env` berdasarkan `.env.example`, lalu isi variabel seperti:
    ```
-   PORT=5000
-   MONGO_URI=mongodb://localhost:27017/rekananku
-   JWT_SECRET=your_jwt_secret
+   PORT=4000
+   MONGO_URL=mongodb://localhost:27017/rekananku
+   SECRET=your_jwt_secret
    ```
 
 4. Jalankan server:
