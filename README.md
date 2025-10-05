@@ -16,7 +16,6 @@ Procurement adalah proses mendapatkan barang atau jasa dari pihak eksternal untu
 - **bcrypt.js** — enkripsi password  
 - **dotenv** — konfigurasi environment  
 - **CORS & Morgan** — logging & keamanan API  
-- **Mocha + Chai** — unit/integration testing  
 
 ---
 
@@ -86,8 +85,8 @@ Penjelasan:
    yarn dev
    ```
 
-5. Server berjalan di `http://localhost:5000`  
-   Endpoint API utama tersedia di `/api/...`
+5. Server berjalan di `http://localhost:4000`  
+   Endpoint API utama tersedia di `/api/v1`
 
 ---
 
@@ -97,7 +96,7 @@ Frontend: [Next-RekananKu](https://github.com/DimasNuryadin/Next-RekananKu)
 Gunakan variabel environment berikut di frontend untuk mengakses API backend:
 
 ```
-NEXT_PUBLIC_API_BASE_URL=http://localhost:5000/api
+NEXT_PUBLIC_API_BASE_URL=http://localhost:4000/api/v1
 ```
 
 Pastikan **CORS** diaktifkan agar permintaan dari domain frontend (misalnya `localhost:3000`) dapat diterima backend.
@@ -108,13 +107,15 @@ Pastikan **CORS** diaktifkan agar permintaan dari domain frontend (misalnya `loc
 
 | Method | Endpoint | Deskripsi |
 |--------|-----------|-----------|
-| `POST` | `/api/auth/register` | Registrasi pengguna baru |
-| `POST` | `/api/auth/login` | Login & mendapatkan JWT token |
-| `GET` | `/api/rekanan` | Mendapatkan daftar rekanan |
-| `POST` | `/api/rekanan` | Menambah data rekanan baru |
-| `PUT` | `/api/rekanan/:id` | Mengedit data rekanan |
-| `DELETE` | `/api/rekanan/:id` | Menghapus data rekanan |
-| `GET` | `/api/profile` | Mendapatkan data profil pengguna (auth required) |
+| `POST` | `/api/v1/auth/signup` | Registrasi pengguna baru |
+| `POST` | `/api/v1/auth/signin` | Login & mendapatkan JWT token |
+| `GET` | `/api/v1/data-perusahaan` | Mendapatkan data perusahaan (auth required) |
+| `PUT` | `/api/v1/data-perusahaan` | Mengedit data perusahaan (auth required) |
+| `GET` | `/api/v1/izin-usaha` | Mendapatkan data izin usaha (auth required) |
+| `POST` | `/api/v1/izin-usaha` | Menambah data izin usaha (auth required) |
+| `DELETE` | `/api/v1/izin-usaha/:id` | Menghapus data izin usaha (auth required) |
+| `GET` | `/api/v1/status-rekanan` | Mendapatkan data status rekanan |
+| `POST` | `/api/v1status-rekanan` | Mengajukan rekanan |
 
 ---
 
@@ -125,20 +126,6 @@ Beberapa middleware penting:
 - `authMiddleware.js` — memverifikasi token JWT  
 - `errorHandler.js` — menangani error global  
 - `validateInput.js` — validasi request body  
-
----
-
-## 🧪 Testing
-
-Gunakan **Mocha** + **Chai** untuk pengujian API.
-
-### Menjalankan Test
-
-```bash
-npm run test
-```
-
-Pastikan koneksi database test telah diatur (bisa pakai MongoDB in-memory atau database terpisah).
 
 ---
 
@@ -164,21 +151,10 @@ Contoh platform: **Render**, **Railway**, **Vercel (API routes)**, atau **VPS se
 - Pengaturan akses (middleware)  
 - Integrasi mudah dengan frontend Next.js  
 - Logging dan error handling terstruktur  
+- Halaman admin menggunakan EJS untuk memantau dan mengelola data rekanan, pengguna, serta aktivitas sistem.
+  - Admin dapat melihat daftar pengguna, menerima dan menolak rekanan secara manual.
+  - Tampilan antarmuka sederhana berbasis template EJS.
+  - Data diambil langsung dari MongoDB melalui controller dan model.
+  - Dapat diperluas untuk menampilkan jumlah registrasi user, pengajuan rekanan, dan bukan rekanan.
 
 ---
-
-## 👥 Kontribusi
-
-Jika ingin berkontribusi:
-
-1. Fork repository  
-2. Buat branch baru: `feature/nama-fitur`  
-3. Lakukan perubahan dan commit  
-4. Push ke branch tersebut  
-5. Buat Pull Request ke repo utama  
-
----
-
-## 📝 Lisensi
-
-*(Tambahkan lisensi open-source jika kamu ingin, misalnya MIT atau Apache 2.0.)*
