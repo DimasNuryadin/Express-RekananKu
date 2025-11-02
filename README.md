@@ -72,7 +72,7 @@ Penjelasan:
 
 3. Buat file `.env` berdasarkan `.env.example`, lalu isi variabel seperti:
    ```
-   PORT=4000
+   PORT=4001
    MONGO_URL=mongodb://localhost:27017/rekananku
    SECRET=your_jwt_secret
    ```
@@ -85,7 +85,7 @@ Penjelasan:
    yarn dev
    ```
 
-5. Server berjalan di `http://localhost:4000`  
+5. Server berjalan di `http://localhost:4001`  
    Endpoint API utama tersedia di `/api/v1`
 
 ---
@@ -96,10 +96,10 @@ Frontend: [Next-RekananKu](https://github.com/DimasNuryadin/Next-RekananKu)
 Gunakan variabel environment berikut di frontend untuk mengakses API backend:
 
 ```
-NEXT_PUBLIC_API_BASE_URL=http://localhost:4000/api/v1
+NEXT_PUBLIC_API_URL=http://localhost:4001/api/v1
 ```
 
-Pastikan **CORS** diaktifkan agar permintaan dari domain frontend (misalnya `localhost:3000`) dapat diterima backend.
+Pastikan **CORS** diaktifkan agar permintaan dari domain frontend (misalnya `localhost:3001`) dapat diterima backend.
 
 ---
 
